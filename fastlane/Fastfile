@@ -26,10 +26,6 @@ platform :ios do
 			show_diff: true
 		)
 		git_pull
-		cocoapods(
-			clean: true,
-			podfile: "./Podfile"
-			)
 		match(git_url: "https://github.com/codeine-coding/Odeon.git",
 			type: "appstore",
 			app_identifier: $app_identifier
