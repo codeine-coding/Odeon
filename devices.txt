@@ -1,0 +1,2 @@
+Device ID	Device Name
+00008020-000468623C50003A	BuddhaX

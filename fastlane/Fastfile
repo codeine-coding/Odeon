@@ -1,0 +1,76 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+$certs_path = "./Certificates"
+$username = "awhearry@gmail.com"
+$app_identifier = "com.codeinetech.Odeon"
+
+default_platform(:ios)
+
+platform :ios do
+	before_all do
+		update_fastlane
+		ensure_git_status_clean(
+			show_uncommitted_changes: true,
+			show_diff: true
+		)
+		git_pull
+		match(git_url: "https://github.com/codeine-coding/Odeon.git",
+			type: "appstore",
+			app_identifier: $app_identifier
+			)
+	end
+
+	desc "Beta realeases"
+	lane :beta do
+		register_devices(devices_file: "devices.txt")
+		gym(silent: true, export_method: "app-store")
+		changelog = changelog_from_git_commits(pretty: "%h %s")
+		upload_to_testflight(
+			username: $username,
+			app_identifier: $app_identifier,
+			itc_provider: "HZQ3ZGBLE6",
+			beta_app_description: changelog,
+			beta_app_feedback_email: "allen@codeinecoding.com",
+			distribute_external: true,
+			groups: "InnerCircle",
+			notify_external_testers: true,
+			reject_build_waiting_for_review: true
+			)
+		increment_build_number(xcodeproj: "Odeon.xcworkspace")
+		commit_version_bump(
+			message: 'Build Version Bump by fastlane',
+			xcodeproj: "Odeon.xcworkspace",
+			force: true
+			)
+		add_git_tag(grouping: "testing")
+		push_to_git_remote
+		push_git_tags
+	end
+
+	lane :development do
+		register_devices(devices_file: "devices.txt")
+  	# match(type: "development", force_for_new_devices: false)
+  end
+
+  lane :release do
+  	produce(
+  		username: $username,
+  		app_identifier: $app_identifier,
+  		app_name: "Odeon Quotes",
+  		language: "English",
+  		app_version: "1.1",
+  		)
+  end
+end
