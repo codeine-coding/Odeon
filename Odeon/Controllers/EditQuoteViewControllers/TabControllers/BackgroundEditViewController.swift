@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UnsplashPhotoPicker
 
 class BackgroundEditViewController: UIViewController {
     
@@ -95,10 +96,14 @@ class BackgroundEditViewController: UIViewController {
     }
     
     @objc func imageSelect() {
-        let backgroundImageChooseVC = StockImageSearchViewController()
-        backgroundImageChooseVC.editQuoteViewController = editQuoteController
-        let destination = UINavigationController(rootViewController: backgroundImageChooseVC)
-        present(destination, animated: true, completion: nil)
+//        let backgroundImageChooseVC = StockImageSearchViewController()
+//        backgroundImageChooseVC.editQuoteViewController = editQuoteController
+//        let destination = UINavigationController(rootViewController: backgroundImageChooseVC)
+//        present(destination, animated: true, completion: nil)
+        let USConfig = UnsplashPhotoPickerConfiguration(accessKey: API.USAccessKey, secretKey: API.USSecretKey)
+        let desitnation = UnsplashPhotoPicker(configuration: USConfig)
+        desitnation.photoPickerDelegate = self
+        present(desitnation, animated: true, completion: nil)
     }
 
     @objc func fromPhotosSelect() {
@@ -109,6 +114,20 @@ class BackgroundEditViewController: UIViewController {
     }
 
 }
+
+extension BackgroundEditViewController: UnsplashPhotoPickerDelegate {
+    func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
+        guard let urlString = photos.first?.urls[.regular] else { return }
+        editQuoteController?.quoteBackgroundImage.downloadImage(from: urlString.absoluteString)
+    }
+
+    func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
+        return
+    }
+
+
+}
+
 
 extension BackgroundEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

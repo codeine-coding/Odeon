@@ -33,10 +33,12 @@ PODS:
   - Realm/Headers (3.14.0)
   - RealmSwift (3.14.0):
     - Realm (= 3.14.0)
+  - UnsplashPhotoPicker (1.0.1)
 
 DEPENDENCIES:
   - Google-Mobile-Ads-SDK
   - RealmSwift
+  - UnsplashPhotoPicker (~> 1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -46,6 +48,7 @@ SPEC REPOS:
     - nanopb
     - Realm
     - RealmSwift
+    - UnsplashPhotoPicker
 
 SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 30a1520469efa03097af62ea0d8f9be773542267
@@ -54,7 +57,8 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Realm: 221b25919bb5a010a3c597d707f8df3492dcd93a
   RealmSwift: 28f22dfa6a27b9a778cfb09471558b6afcf1022c
+  UnsplashPhotoPicker: 3669aef6d3cd8bc45f19d681eef0af5920325c79
 
-PODFILE CHECKSUM: 6a7ad5eda6ec9732ab60fd3d2f7270817d26dd99
+PODFILE CHECKSUM: 2ceae8663183229df29a939d4cbbefc248e5e083
 
 COCOAPODS: 1.5.2

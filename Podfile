@@ -10,5 +10,6 @@ target 'Odeon' do
   # Pods for Odeon
   pod 'Google-Mobile-Ads-SDK'
   pod 'RealmSwift'
+  pod 'UnsplashPhotoPicker', '~> 1.0'
 
 end
