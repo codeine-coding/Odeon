@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ADMOB_TEST_DEVICE</key>
+	<string>$(ADMOB_TEST_DEVICE)</string>
+	<key>CATEGORIES_URL</key>
+	<string>$(CATEGORIES_URL)</string>
+	<key>CATEGORY_BANNER_AD_UNIT_ID</key>
+	<string>$(CATEGORY_BANNER_AD_UNIT_ID)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -20,6 +26,8 @@
 	<string>3</string>
 	<key>GADApplicationIdentifier</key>
 	<string>$(ADMOB_APP_ID)</string>
+	<key>INTERSTITIAL_AD_UNIT_ID</key>
+	<string>$(INTERSTITIAL_AD_UNIT_ID)</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram</string>
@@ -33,6 +41,12 @@
 	</dict>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app will access your photos to use as quote background images.</string>
+	<key>OMDB_API_KEY</key>
+	<string>$(OMDB_API_KEY)</string>
+	<key>QOTD_URL</key>
+	<string>$(QOTD_URL)</string>
+	<key>QUOTES_URL</key>
+	<string>$(QUOTES_URL)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Animosa-Bold.otf</string>
@@ -67,23 +81,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>QUOTES_URL</key>
-	<string>$(QUOTES_URL)</string>
-	<key>QOTD_URL</key>
-	<string>$(QOTD_URL)</string>
-	<key>CATEGORIES_URL</key>
-	<string>$(CATEGORIES_URL)</string>
 	<key>UNSPLASH_ACESS_KEY</key>
 	<string>$(UNSPLASH_ACESS_KEY)</string>
 	<key>UNSPLASH_SECRET_KEY</key>
 	<string>$(UNSPLASH_SECRET_KEY)</string>
-	<key>OMDB_API_KEY</key>
-	<string>$(OMDB_API_KEY)</string>
-	<key>ADMOB_TEST_DEVICE</key>
-	<string>$(ADMOB_TEST_DEVICE)</string>
-	<key>CATEGORY_BANNER_AD_UNIT_ID</key>
-	<string>$(CATEGORY_BANNER_AD_UNIT_ID)</string>
-	<key>INTERSTITIAL_AD_UNIT_ID</key>
-	<string>$(INTERSTITIAL_AD_UNIT_ID)</string>
 </dict>
 </plist>

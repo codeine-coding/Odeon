@@ -16,6 +16,7 @@ $certs_path = "./Certificates"
 $username = "awhearry@gmail.com"
 $app_identifier_Production = "com.codeinetech.Odeon"
 $app_identifier_beta = "com.codeinetech.Odeon-Beta"
+$app_identifier_dev = "com.codeinetech.Odeon-Dev"
 
 default_platform(:ios)
 
@@ -27,14 +28,14 @@ platform :ios do
 			show_diff: true
 		)
 		git_pull
-		match(git_url: "https://github.com/codeine-coding/Odeon.git",
-			type: "appstore",
-			app_identifier: $app_identifier
-			)
 	end
 
 	desc "Beta realeases"
 	lane :beta do
+		match(git_url: "https://github.com/codeine-coding/Odeon.git",
+			type: "appstore",
+			app_identifier: $app_identifier_dev
+		)
 		register_devices(devices_file: "devices.txt")
 		gym(silent: true, export_method: "app-store")
 		changelog = changelog_from_git_commits(pretty: "%h %s")
@@ -64,6 +65,15 @@ platform :ios do
 	lane :development do
 		register_devices(devices_file: "devices.txt")
   	# match(type: "development", force_for_new_devices: false)
+  end
+
+  lane :codeSigning do
+  	match(
+  		app_identifier:[
+  			$app_identifier_beta,
+  			$app_identifier_Production
+  		]
+  	)
   end
 
   lane :release do

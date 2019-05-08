@@ -26,6 +26,11 @@ Beta realeases
 fastlane ios development
 ```
 
+### ios codeSigning
+```
+fastlane ios codeSigning
+```
+
 ### ios release
 ```
 fastlane ios release
