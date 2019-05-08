@@ -62,6 +62,10 @@ platform :ios do
 		push_git_tags
 	end
 
+	lane :push do
+		push_to_git_remote
+	end
+
 	lane :development do
 		register_devices(devices_file: "devices.txt")
   	# match(type: "development", force_for_new_devices: false)
