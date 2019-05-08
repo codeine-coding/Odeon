@@ -951,7 +951,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(OQ_APP_ICON)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = HZQ3ZGBLE6;
 				INFOPLIST_FILE = Odeon/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -960,7 +960,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(OQ_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.codeinetech.Odeon-Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -971,7 +971,7 @@
 			baseConfigurationReference = D467B19D31A9A3326989B24D /* Pods-Odeon.production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "$(OQ_APP_ICON)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = HZQ3ZGBLE6;
 				INFOPLIST_FILE = Odeon/Info.plist;
@@ -982,7 +982,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "$(OQ_APP_BUNDLE_ID)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.codeinetech.Odeon";
+				PROVISIONING_PROFILE_SPECIFIER = "com.codeinetech.Odeon AppStore";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

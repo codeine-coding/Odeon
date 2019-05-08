@@ -10,8 +10,4 @@ scheme("Odeon")
 
 sdk("iphoneos12.2")
 
-output_directory("./build")
-
-output_name("Odeon")
-
 clean(true)
