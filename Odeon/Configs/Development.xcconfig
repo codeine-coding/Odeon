@@ -13,5 +13,5 @@
 
 OQ_APP_NAME = Odeon-Dev
 OQ_APP_VERSION = 1.5
-OQ_APP_BUNDLE_ID = com.codeinetech.Odeon-Dev
+OQ_APP_BUNDLE_ID = com.codeinetech.Odeon
 OQ_APP_ICON = AppIconBeta
