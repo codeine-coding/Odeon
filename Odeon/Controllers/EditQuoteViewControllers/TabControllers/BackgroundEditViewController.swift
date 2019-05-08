@@ -100,7 +100,7 @@ class BackgroundEditViewController: UIViewController {
 //        backgroundImageChooseVC.editQuoteViewController = editQuoteController
 //        let destination = UINavigationController(rootViewController: backgroundImageChooseVC)
 //        present(destination, animated: true, completion: nil)
-        let USConfig = UnsplashPhotoPickerConfiguration(accessKey: API.USAccessKey, secretKey: API.USSecretKey)
+        let USConfig = UnsplashPhotoPickerConfiguration(accessKey: Environment.USAccessKey, secretKey: Environment.USSecretKey)
         let desitnation = UnsplashPhotoPicker(configuration: USConfig)
         desitnation.photoPickerDelegate = self
         present(desitnation, animated: true, completion: nil)

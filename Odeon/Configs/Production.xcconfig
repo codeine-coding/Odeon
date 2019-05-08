@@ -8,8 +8,12 @@
 
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
+#include "Base.xcconfig"
 
 OQ_APP_NAME = Odeon Quotes
 OQ_APP_VERSION = 1.5
 OQ_APP_BUNDLE_ID = com.codeinetech.Odeon
 OQ_APP_ICON = AppIcon
+
+CATEGORY_BANNER_AD_UNIT_ID = ca-app-pub-9537695112430141/4883593616
+INTERSTITIAL_AD_UNIT_ID = ca-app-pub-9537695112430141/9156072628

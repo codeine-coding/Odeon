@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class BookmarksViewController: UIViewController {
 
+    var interstitial: GADInterstitial!
     let cellID = "CellID"
     var destinationController: UINavigationController?
     var bookmarkManager = BookmarkedQuoteManager()
@@ -101,20 +103,31 @@ extension BookmarksViewController: QuoteCellDelegate {
             quoteDetailView.film = OMDBService.instance.filmOMDB
         }
         destinationController = UINavigationController(rootViewController: quoteDetailView)
-        //        if API.InfoButtonClickedCount % 5 == 0 {
-        //            if interstitial.isReady {
-        //                print("shwoing ad")
-        //                interstitial.present(fromRootViewController: self)
-        //            } else {
-        //                print("Ad wasn't ready")
-        //            }
-        //        } else {
-        //            present(destinationController!, animated: true, completion: nil)
-        //        }
+        if API.InfoButtonClickedCount % 5 == 0 {
+            if interstitial.isReady {
+                print("shwoing ad")
+                interstitial.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
+        } else {
+            present(destinationController!, animated: true, completion: nil)
+        }
+        present(destinationController!, animated: true, completion: nil)
+    }
+}
+
+extension BookmarksViewController: GADInterstitialDelegate {
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: Environment.InterstitialAd)
+        interstitial.delegate = self
+        interstitial.load(TestDeviceRequest)
+        return interstitial
+    }
+
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
         present(destinationController!, animated: true, completion: nil)
     }
 
-
-
 }
-

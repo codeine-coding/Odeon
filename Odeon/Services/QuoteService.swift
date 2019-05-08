@@ -16,24 +16,21 @@ class QuoteService {
     
     
     func getQuotes(completed: @escaping () -> Void) {
-        let quotesURL = API.QuotesURL
-        getData(with: quotesURL, completed: completed)
+        getData(with: Environment.quotesURL, completed: completed)
     }
     
     func getQuotesOfTheDay(completed: @escaping () -> Void) {
-        let quotesURL = API.QotdURL
-        getData(with: quotesURL, completed: completed)
+        getData(with: Environment.qotdURL, completed: completed)
     }
 
-    func getData(with webAddress: String, completed: @escaping () -> Void) {
-        guard let url = URL(string: webAddress) else { return }
+    func getData(with url: URL, completed: @escaping () -> Void) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
 
             do {
                 var results = [Quote]()
                 results = try JSONDecoder().decode([Quote].self, from: data)
-                if webAddress == API.QuotesURL {
+                if url == Environment.quotesURL {
                     self.quotes = results
                 } else {
                     self.qotd = results

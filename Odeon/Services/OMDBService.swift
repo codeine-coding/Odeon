@@ -14,7 +14,7 @@ class OMDBService {
     var filmOMDB = FilmOMDB()
     
     func getFilmInfo(with imdbID: String, completed: @escaping () -> Void) {
-        let filmInfoURL = "https://www.omdbapi.com/?i=\(imdbID)&plot=full&apikey=\(API.OMDBApiKey)"
+        let filmInfoURL = "https://www.omdbapi.com/?i=\(imdbID)&plot=full&apikey=\(Environment.OMDBApiKey)"
         guard let url = URL(string: filmInfoURL) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in

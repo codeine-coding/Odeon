@@ -57,7 +57,7 @@ class CategoriesViewController: UIViewController {
     lazy var bannerView: GADBannerView = {
         let view = GADBannerView(adSize: kGADAdSizeLargeBanner)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.adUnitID = API.TestAdMob.Banner
+        view.adUnitID = Environment.categoryBannerAd
         view.rootViewController = self
         let request = GADRequest()
         request.testDevices = [ "d61a2f834f47d41f5beceaa02715e221" ]

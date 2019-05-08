@@ -13,10 +13,7 @@ class CategoryService {
     var categories = [Category]()
     
     func getCategories(completed: @escaping () -> Void) {
-        let categoriesURL = API.CategoriesURL
-        guard let url = URL(string: categoriesURL) else { return }
-        
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: Environment.categoriesURL) { (data, response, error) in
             guard let data = data else { return }
             
             do {

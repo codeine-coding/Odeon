@@ -14,7 +14,8 @@
 # update_fastlane
 $certs_path = "./Certificates"
 $username = "awhearry@gmail.com"
-$app_identifier = "com.codeinetech.Odeon"
+$app_identifier_Production = "com.codeinetech.Odeon"
+$app_identifier_beta = "com.codeinetech.Odeon-Beta"
 
 default_platform(:ios)
 
@@ -41,6 +42,7 @@ platform :ios do
 			username: $username,
 			app_identifier: $app_identifier,
 			itc_provider: "HZQ3ZGBLE6",
+			configuration: "Beta",
 			beta_app_description: changelog,
 			beta_app_feedback_email: "allen@codeinecoding.com",
 			# distribute_external: true,

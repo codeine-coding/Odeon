@@ -172,9 +172,9 @@ extension HomeViewController: QuoteCellDelegate {
 
 extension HomeViewController: GADInterstitialDelegate {
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: API.TestAdMob.Interstitial)
+        let interstitial = GADInterstitial(adUnitID: Environment.InterstitialAd)
         interstitial.delegate = self
-//        interstitial.load(TestDeviceRequest)
+        interstitial.load(TestDeviceRequest)
         return interstitial
     }
     

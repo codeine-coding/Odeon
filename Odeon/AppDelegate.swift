@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Initialize the Google Mobile Ads SDK.
         GADMobileAds.sharedInstance().start(completionHandler: nil)
-        TestDeviceRequest.testDevices = [ "d61a2f834f47d41f5beceaa02715e221" ]
+        TestDeviceRequest.testDevices = [ Environment.testDevice ]
         setupFonts()
 
         // defaults apperances
