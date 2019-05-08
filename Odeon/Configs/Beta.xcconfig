@@ -1,0 +1,15 @@
+//
+//  Beta.xcconfig
+//  Odeon
+//
+//  Created by Allen Whearry on 5/7/19.
+//  Copyright © 2019 Allen Whearry. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+OQ_APP_NAME = Odeon-Beta
+OQ_APP_VERSION = 1.5
+OQ_APP_BUNDLE_ID = com.codeinetech.Odeon-Beta
+OQ_APP_ICON = AppIconBeta
