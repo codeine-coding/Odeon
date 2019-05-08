@@ -76,7 +76,7 @@ platform :ios do
   		app_identifier:[
   			$app_identifier_beta,
   			$app_identifier_Production
-  		]
+  		],
   		type: "appstore"
   	)
   	match(
