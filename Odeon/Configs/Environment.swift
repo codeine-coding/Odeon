@@ -70,6 +70,12 @@ public enum Environment {
         return apiKey
     }()
 
+    static func OBMDFilmInfo(_ imdbID: String) -> URL {
+        let webAddress = "https://www.omdbapi.com/?i=\(imdbID)&plot=full&apikey=\(Environment.OMDBApiKey)"
+        guard let url = URL(string: webAddress) else { fatalError("URL is Invalid") }
+        return url
+    }
+
     // ADMOB
     static let testDevice: String = {
         guard let td = Environment.infoForKey(Keys.Plist.admobTestDevice) else {
