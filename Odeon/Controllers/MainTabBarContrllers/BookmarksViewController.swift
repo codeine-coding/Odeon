@@ -117,14 +117,8 @@ extension BookmarksViewController: QuoteCellDelegate {
     }
 }
 
-extension BookmarksViewController: GADInterstitialDelegate {
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: Environment.InterstitialAd)
-        interstitial.delegate = self
-        interstitial.load(TestDeviceRequest)
-        return interstitial
-    }
-
+extension BookmarksViewController: HasInterstitalAd {
+    
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         interstitial = createAndLoadInterstitial()
         present(destinationController!, animated: true, completion: nil)

@@ -170,13 +170,7 @@ extension HomeViewController: QuoteCellDelegate {
     
 }
 
-extension HomeViewController: GADInterstitialDelegate {
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: Environment.InterstitialAd)
-        interstitial.delegate = self
-        interstitial.load(TestDeviceRequest)
-        return interstitial
-    }
+extension HomeViewController: HasInterstitalAd {
     
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         interstitial = createAndLoadInterstitial()

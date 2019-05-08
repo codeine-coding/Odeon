@@ -71,6 +71,7 @@
 		9F67FFFB2260308300329B03 /* Animosa-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFF92260308300329B03 /* Animosa-Regular.otf */; };
 		9F67FFFC2260308300329B03 /* Animosa-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFA2260308300329B03 /* Animosa-Light.otf */; };
 		9F67FFFE2260314C00329B03 /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFD2260314C00329B03 /* Bangers-Regular.ttf */; };
+		9FB8B1D02283532200AD393E /* HasInterstial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8B1CF2283532200AD393E /* HasInterstial.swift */; };
 		9FCA0F792279462F00AC3CBF /* OdeonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA0F782279462F00AC3CBF /* OdeonTests.swift */; };
 		F7839F088A023A0AD914CACF /* Pods_Odeon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B3D732680336E8AE82D16 /* Pods_Odeon.framework */; };
 /* End PBXBuildFile section */
@@ -167,6 +168,7 @@
 		9F67FFFA2260308300329B03 /* Animosa-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Animosa-Light.otf"; sourceTree = "<group>"; };
 		9F67FFFD2260314C00329B03 /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
 		9F67FFFF2260315700329B03 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Bold.ttf"; sourceTree = "<group>"; };
+		9FB8B1CF2283532200AD393E /* HasInterstial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasInterstial.swift; sourceTree = "<group>"; };
 		9FCA0F762279462F00AC3CBF /* OdeonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdeonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCA0F782279462F00AC3CBF /* OdeonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdeonTests.swift; sourceTree = "<group>"; };
 		9FCA0F7A2279462F00AC3CBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 				9F01ED752260046D009712DE /* Extensions.swift */,
 				9F01ED762260046D009712DE /* CachedImage.swift */,
 				9F01ED772260046D009712DE /* Errors.swift */,
+				9FB8B1CF2283532200AD393E /* HasInterstial.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -732,6 +735,7 @@
 			files = (
 				9F67FFD922602CCA00329B03 /* BookmarksViewController.swift in Sources */,
 				9F01ED7D2260046D009712DE /* Colors.swift in Sources */,
+				9FB8B1D02283532200AD393E /* HasInterstial.swift in Sources */,
 				9F67FFDB22602D1200329B03 /* CategoryDetailViewController.swift in Sources */,
 				9F67FFE722602E8500329B03 /* EditQuoteViewController.swift in Sources */,
 				9F67FFED22602F0600329B03 /* BackgroundEditViewController.swift in Sources */,

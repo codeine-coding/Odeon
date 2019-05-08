@@ -204,17 +204,12 @@ extension DiscoverViewController: QuoteCellDelegate {
     
 }
 
-extension DiscoverViewController: GADInterstitialDelegate {
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: Environment.InterstitialAd)
-        interstitial.delegate = self
-        interstitial.load(TestDeviceRequest)
-        return interstitial
-    }
-    
+extension DiscoverViewController: HasInterstitalAd {
+
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         interstitial = createAndLoadInterstitial()
         present(destinationController!, animated: true, completion: nil)
     }
-    
+
 }
+
