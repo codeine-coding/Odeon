@@ -11,6 +11,6 @@
 
 #include "Base.xcconfig"
 
-OQ_APP_NAME = Odeon-Dev
+OQ_APP_NAME = Odeon-Dev 
 OQ_APP_BUNDLE_ID = com.codeinetech.Odeon
 OQ_APP_ICON = AppIconBeta
