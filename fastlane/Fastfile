@@ -34,7 +34,7 @@ platform :ios do
 	lane :beta do
 		match(git_url: "https://github.com/codeine-coding/Odeon.git",
 			type: "appstore",
-			app_identifier: $app_identifier_dev
+			app_identifier: $app_identifier_beta
 		)
 		register_devices(devices_file: "devices.txt")
 		gym(silent: true, export_method: "app-store")
@@ -74,6 +74,11 @@ platform :ios do
   			$app_identifier_Production
   		]
   	)
+  end
+
+  lane :devCodeSign do
+  	app_identifier: $app_identifier_dev,
+  	type: "development"
   end
 
   lane :release do
