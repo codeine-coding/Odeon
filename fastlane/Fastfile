@@ -77,8 +77,10 @@ platform :ios do
   end
 
   lane :devCodeSign do
-  	app_identifier: $app_identifier_dev,
-  	type: "development"
+  	match(
+  		app_identifier: $app_identifier_dev,
+  		type: "development"
+  	)
   end
 
   lane :release do
