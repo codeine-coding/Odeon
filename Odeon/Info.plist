@@ -23,7 +23,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(OQ_APP_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>3</string>
 	<key>GADApplicationIdentifier</key>
 	<string>$(ADMOB_APP_ID)</string>
 	<key>INTERSTITIAL_AD_UNIT_ID</key>
