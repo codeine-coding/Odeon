@@ -36,11 +36,6 @@ fastlane ios development
 fastlane ios codeSigning
 ```
 
-### ios devCodeSign
-```
-fastlane ios devCodeSign
-```
-
 ### ios release
 ```
 fastlane ios release
