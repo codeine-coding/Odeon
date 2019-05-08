@@ -41,7 +41,7 @@ platform :ios do
 		changelog = changelog_from_git_commits(pretty: "%h %s")
 		upload_to_testflight(
 			username: $username,
-			app_identifier: $app_identifier,
+			app_identifier: $app_identifier_beta,
 			itc_provider: "HZQ3ZGBLE6",
 			configuration: "Beta",
 			beta_app_description: changelog,
