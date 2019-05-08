@@ -32,6 +32,8 @@ public enum Environment {
         }
     }
 
+    static var InfoButtonClickedCount: Int = 0
+
     // Odeon
     static let quotesURL: URL = {
         return getURL(with: Keys.Plist.quotesURL, for: "Quotes URL")

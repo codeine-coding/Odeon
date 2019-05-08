@@ -143,9 +143,3 @@ extension BackgroundEditViewController: BackgroundColorDelegate {
         editQuoteController?.updateQuoteBackground()
     }
 }
-
-extension BackgroundEditViewController: StockImageDelegate {
-    func didSelectBackgroundImage(imageView: UIImageView) {
-        editQuoteController?.quoteBackgroundImage.image = imageView.image
-    }
-}

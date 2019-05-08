@@ -44,7 +44,7 @@ class CategoryDetailViewController: UIViewController {
     lazy var bannerView: GADBannerView = {
         let view = GADBannerView(adSize: kGADAdSizeLargeBanner)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.adUnitID = API.TestAdMob.Banner
+        view.adUnitID = Environment.categoryBannerAd
         view.rootViewController = self
 //        view.load(TestDeviceRequest)
         return view
@@ -151,13 +151,13 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
 extension CategoryDetailViewController: QuoteCellDelegate {
 
     func infoButtonPressed(imdb_id: String) {
-        API.InfoButtonClickedCount += 1
+        Environment.InfoButtonClickedCount += 1
         let quoteDetailView = QuoteDetailController()
         OMDBService.instance.getFilmInfo(with: imdb_id) {
             quoteDetailView.film = OMDBService.instance.filmOMDB
         }
         destinationController = UINavigationController(rootViewController: quoteDetailView)
-        if API.InfoButtonClickedCount % 5 == 0 {
+        if Environment.InfoButtonClickedCount % 5 == 0 {
             if interstitial.isReady {
                 print("shwoing ad")
                 interstitial.present(fromRootViewController: self)

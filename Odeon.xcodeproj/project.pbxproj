@@ -27,13 +27,10 @@
 		9F01ED862260046D009712DE /* NoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED602260046D009712DE /* NoDataView.swift */; };
 		9F01ED872260046D009712DE /* BackgroundColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED612260046D009712DE /* BackgroundColorCell.swift */; };
 		9F01ED882260046D009712DE /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED622260046D009712DE /* CategoryHeaderView.swift */; };
-		9F01ED892260046D009712DE /* UnsplashImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED632260046D009712DE /* UnsplashImageCell.swift */; };
 		9F01ED8A2260046D009712DE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED652260046D009712DE /* BaseCollectionViewCell.swift */; };
 		9F01ED8B2260046D009712DE /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED672260046D009712DE /* CategoryService.swift */; };
-		9F01ED8C2260046D009712DE /* UnsplashService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED682260046D009712DE /* UnsplashService.swift */; };
 		9F01ED8D2260046D009712DE /* ShareToInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6A2260046D009712DE /* ShareToInstagram.swift */; };
 		9F01ED8E2260046D009712DE /* InstagramManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6B2260046D009712DE /* InstagramManager.swift */; };
-		9F01ED8F2260046D009712DE /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6C2260046D009712DE /* API.swift */; };
 		9F01ED902260046D009712DE /* OMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6D2260046D009712DE /* OMDBService.swift */; };
 		9F01ED912260046D009712DE /* QuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6E2260046D009712DE /* QuoteService.swift */; };
 		9F01ED922260046D009712DE /* CategorySelectionPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED702260046D009712DE /* CategorySelectionPushTransition.swift */; };
@@ -69,7 +66,6 @@
 		9F67FFED22602F0600329B03 /* BackgroundEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67FFEC22602F0600329B03 /* BackgroundEditViewController.swift */; };
 		9F67FFEF22602F1100329B03 /* FontEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67FFEE22602F1100329B03 /* FontEditViewController.swift */; };
 		9F67FFF122602F3400329B03 /* BackgroundColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67FFF022602F3400329B03 /* BackgroundColorViewController.swift */; };
-		9F67FFF322602F4000329B03 /* StockImageSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F67FFF222602F4000329B03 /* StockImageSearchViewController.swift */; };
 		9F67FFF62260305000329B03 /* Animosa-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFF52260305000329B03 /* Animosa-Bold.otf */; };
 		9F67FFF82260307300329B03 /* Animosa-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFF72260307300329B03 /* Animosa-ExtraBold.otf */; };
 		9F67FFFB2260308300329B03 /* Animosa-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFF92260308300329B03 /* Animosa-Regular.otf */; };
@@ -121,13 +117,10 @@
 		9F01ED602260046D009712DE /* NoDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoDataView.swift; sourceTree = "<group>"; };
 		9F01ED612260046D009712DE /* BackgroundColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorCell.swift; sourceTree = "<group>"; };
 		9F01ED622260046D009712DE /* CategoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
-		9F01ED632260046D009712DE /* UnsplashImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashImageCell.swift; sourceTree = "<group>"; };
 		9F01ED652260046D009712DE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F01ED672260046D009712DE /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
-		9F01ED682260046D009712DE /* UnsplashService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsplashService.swift; sourceTree = "<group>"; };
 		9F01ED6A2260046D009712DE /* ShareToInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareToInstagram.swift; sourceTree = "<group>"; };
 		9F01ED6B2260046D009712DE /* InstagramManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramManager.swift; sourceTree = "<group>"; };
-		9F01ED6C2260046D009712DE /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		9F01ED6D2260046D009712DE /* OMDBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMDBService.swift; sourceTree = "<group>"; };
 		9F01ED6E2260046D009712DE /* QuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
 		9F01ED702260046D009712DE /* CategorySelectionPushTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionPushTransition.swift; sourceTree = "<group>"; };
@@ -168,7 +161,6 @@
 		9F67FFEC22602F0600329B03 /* BackgroundEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundEditViewController.swift; sourceTree = "<group>"; };
 		9F67FFEE22602F1100329B03 /* FontEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontEditViewController.swift; sourceTree = "<group>"; };
 		9F67FFF022602F3400329B03 /* BackgroundColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorViewController.swift; sourceTree = "<group>"; };
-		9F67FFF222602F4000329B03 /* StockImageSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockImageSearchViewController.swift; sourceTree = "<group>"; };
 		9F67FFF52260305000329B03 /* Animosa-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Animosa-Bold.otf"; sourceTree = "<group>"; };
 		9F67FFF72260307300329B03 /* Animosa-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Animosa-ExtraBold.otf"; sourceTree = "<group>"; };
 		9F67FFF92260308300329B03 /* Animosa-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Animosa-Regular.otf"; sourceTree = "<group>"; };
@@ -294,7 +286,6 @@
 				9F01ED602260046D009712DE /* NoDataView.swift */,
 				9F01ED612260046D009712DE /* BackgroundColorCell.swift */,
 				9F01ED622260046D009712DE /* CategoryHeaderView.swift */,
-				9F01ED632260046D009712DE /* UnsplashImageCell.swift */,
 				9F01ED642260046D009712DE /* BaseViews */,
 			);
 			path = Views;
@@ -311,9 +302,8 @@
 		9F01ED662260046D009712DE /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				9F01ED672260046D009712DE /* CategoryService.swift */,
-				9F01ED682260046D009712DE /* UnsplashService.swift */,
 				9F01ED692260046D009712DE /* Managers */,
+				9F01ED672260046D009712DE /* CategoryService.swift */,
 				9F01ED6D2260046D009712DE /* OMDBService.swift */,
 				9F01ED6E2260046D009712DE /* QuoteService.swift */,
 			);
@@ -379,7 +369,6 @@
 			children = (
 				9F67FFF022602F3400329B03 /* BackgroundColorViewController.swift */,
 				9F67FFDA22602D1200329B03 /* CategoryDetailViewController.swift */,
-				9F67FFF222602F4000329B03 /* StockImageSearchViewController.swift */,
 				9F01ED9C22600480009712DE /* TabControllers */,
 			);
 			path = EditQuoteViewControllers;
@@ -500,7 +489,6 @@
 		9F44421122827CDD00FC6DA0 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				9F01ED6C2260046D009712DE /* API.swift */,
 				9F4442132282830700FC6DA0 /* Environment.swift */,
 				9F44421222827E1D00FC6DA0 /* Base.xcconfig */,
 				9F4442102282447000FC6DA0 /* Development.xcconfig */,
@@ -752,15 +740,12 @@
 				9F01ED8B2260046D009712DE /* CategoryService.swift in Sources */,
 				9F01ED832260046D009712DE /* QuoteCell.swift in Sources */,
 				9F01ED842260046D009712DE /* SliderLabel.swift in Sources */,
-				9F67FFF322602F4000329B03 /* StockImageSearchViewController.swift in Sources */,
 				9F67FFEB22602EE500329B03 /* EditViewTabBarController.swift in Sources */,
 				9F01ED802260046D009712DE /* CategoryCell.swift in Sources */,
 				9F01ED862260046D009712DE /* NoDataView.swift in Sources */,
-				9F01ED8C2260046D009712DE /* UnsplashService.swift in Sources */,
 				9F67FFE922602E8C00329B03 /* QuoteDetailController.swift in Sources */,
 				9F01ED812260046D009712DE /* AlignmentButton.swift in Sources */,
 				9F67FFE522602E5900329B03 /* SettingsViewController.swift in Sources */,
-				9F01ED8F2260046D009712DE /* API.swift in Sources */,
 				9F4442142282830700FC6DA0 /* Environment.swift in Sources */,
 				9F01ED932260046D009712DE /* CategoryDetailPopTransition.swift in Sources */,
 				9F01ED8A2260046D009712DE /* BaseCollectionViewCell.swift in Sources */,
@@ -774,7 +759,6 @@
 				9F01ED872260046D009712DE /* BackgroundColorCell.swift in Sources */,
 				9F67FFE322602E4700329B03 /* DiscoverViewController.swift in Sources */,
 				9F01ED822260046D009712DE /* SliderStackView.swift in Sources */,
-				9F01ED892260046D009712DE /* UnsplashImageCell.swift in Sources */,
 				9F01ED7A2260046D009712DE /* Quote.swift in Sources */,
 				9F67FFB72260062400329B03 /* Fonts.swift in Sources */,
 				9F01ED942260046D009712DE /* EditingBarTransition.swift in Sources */,
