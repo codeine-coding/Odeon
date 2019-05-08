@@ -83,6 +83,8 @@
 	</array>
 	<key>UNSPLASH_ACESS_KEY</key>
 	<string>$(UNSPLASH_ACESS_KEY)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<true/>
 	<key>UNSPLASH_SECRET_KEY</key>
 	<string>$(UNSPLASH_SECRET_KEY)</string>
 </dict>

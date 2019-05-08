@@ -56,7 +56,7 @@ platform :ios do
 			xcodeproj: "Odeon.xcodeproj",
 			force: true
 			)
-		add_git_tag(grouping: "testing")
+		add_git_tag(grouping: "beta")
 		push_to_git_remote
 		push_git_tags
 	end

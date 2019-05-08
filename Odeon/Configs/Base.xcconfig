@@ -9,6 +9,8 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
+OQ_APP_VERSION = 1.7
+
 // ODEON QUOTES
 QUOTES_URL = https:\/\/quiet-sierra-58217.herokuapp.com/api/quotes/
 QOTD_URL = https:\/\/quiet-sierra-58217.herokuapp.com/api/quotes/qotd
