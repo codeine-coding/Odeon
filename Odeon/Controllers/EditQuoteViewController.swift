@@ -11,8 +11,11 @@ import UIKit
 
 class EditQuoteViewController: UIViewController {
     var debug = false
-    
     var quoteBkgdColor: UIColor?
+    var imageInitialOrigin = CGPoint()
+    var squareImageConstraints = [NSLayoutConstraint]()
+    var portraitImageConstraints = [NSLayoutConstraint]()
+    var landscapeImageConstraints = [NSLayoutConstraint]()
     
     var quote: Quote? {
         didSet {
@@ -74,8 +77,9 @@ class EditQuoteViewController: UIViewController {
     var quoteBackgroundImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = UIImage(named: "")
+//        iv.image = UIImage(named: "")
         iv.contentMode = .scaleAspectFill
+        iv.isUserInteractionEnabled = true
         return iv
     }()
     
@@ -107,10 +111,14 @@ class EditQuoteViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         view.addSubview(editView)
+        print(editView.frame.origin)
+        print(editView.safeAreaLayoutGuide.layoutFrame.origin)
         editView.addSubview(quoteBackgroundImage)
         editView.addSubview(quoteContentLabel)
         editView.addSubview(quoteAuthorLabel)
         editView.addSubview(quoteFilmTitleLabel)
+        imageInitialOrigin = quoteBackgroundImage.frame.origin
+
 //        view.addSubview(colorChooserView)
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancelEdit))
@@ -150,19 +158,14 @@ class EditQuoteViewController: UIViewController {
             quoteContentLabel.leadingAnchor.constraint(equalTo: editView.leadingAnchor, constant: 16),
             quoteContentLabel.trailingAnchor.constraint(equalTo: editView.trailingAnchor, constant: -16),
             quoteContentLabel.heightAnchor.constraint(equalTo: quoteContentLabel.widthAnchor, multiplier: 0.74344023),
-            
-            quoteBackgroundImage.topAnchor.constraint(equalTo: editView.topAnchor),
-            quoteBackgroundImage.bottomAnchor.constraint(equalTo: editView.bottomAnchor),
-            quoteBackgroundImage.leadingAnchor.constraint(equalTo: editView.leadingAnchor),
-            quoteBackgroundImage.trailingAnchor.constraint(equalTo: editView.trailingAnchor),
-            
+
             editBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             editBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             editBarView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            editBarView.heightAnchor.constraint(equalToConstant: view.frame.height / 3)
             editBarView.topAnchor.constraint(equalTo: editView.bottomAnchor),
             
             ])
+        view.layoutIfNeeded()
     }
     
     func updateQuoteBackground() {
@@ -183,8 +186,143 @@ class EditQuoteViewController: UIViewController {
 
     }
     
-    
+    func setupBackgroundImage() {
+        setupBackgroundImageConstraints()
+        setupPanGesture()
+    }
+    func setupBackgroundImageConstraints() {
+        guard
+            let imageWidth = quoteBackgroundImage.image?.size.width,
+            let imageHeight = quoteBackgroundImage.image?.size.height
+            else { return }
+
+        if imageWidth > imageHeight {
+            let ratio = imageWidth / imageHeight
+            landscapeImageConstraints = [
+                quoteBackgroundImage.topAnchor.constraint(equalTo: editView.topAnchor),
+                quoteBackgroundImage.bottomAnchor.constraint(equalTo: editView.bottomAnchor),
+                quoteBackgroundImage.widthAnchor.constraint(equalTo: editView.heightAnchor, multiplier: ratio),
+                quoteBackgroundImage.centerXAnchor.constraint(equalTo: editView.centerXAnchor),
+            ]
+            if !squareImageConstraints.isEmpty{
+                if squareImageConstraints[0].isActive {
+                    NSLayoutConstraint.deactivate(squareImageConstraints)
+                }
+            }
+            if !portraitImageConstraints.isEmpty {
+                if portraitImageConstraints[0].isActive {
+                    NSLayoutConstraint.deactivate(portraitImageConstraints)
+                }
+            }
+            NSLayoutConstraint.activate(landscapeImageConstraints)
+        } else if imageWidth < imageHeight  {
+            let ratio = imageHeight / imageWidth
+            portraitImageConstraints = [
+                quoteBackgroundImage.leadingAnchor.constraint(equalTo: editView.leadingAnchor),
+                quoteBackgroundImage.trailingAnchor.constraint(equalTo: editView.trailingAnchor),
+                quoteBackgroundImage.centerYAnchor.constraint(equalTo: editView.centerYAnchor),
+                quoteBackgroundImage.heightAnchor.constraint(equalTo: editView.widthAnchor, multiplier: ratio)
+            ]
+            if !squareImageConstraints.isEmpty{
+                if squareImageConstraints[0].isActive {
+                    NSLayoutConstraint.deactivate(squareImageConstraints)
+                }
+            }
+            if !landscapeImageConstraints.isEmpty {
+                if landscapeImageConstraints[0].isActive {
+                    NSLayoutConstraint.deactivate(landscapeImageConstraints)
+                }
+            }
+            NSLayoutConstraint.activate(portraitImageConstraints)
+        } else {
+            squareImageConstraints = [
+                quoteBackgroundImage.topAnchor.constraint(equalTo: editView.topAnchor),
+                quoteBackgroundImage.leadingAnchor.constraint(equalTo: editView.leadingAnchor),
+                quoteBackgroundImage.trailingAnchor.constraint(equalTo: editView.trailingAnchor),
+                quoteBackgroundImage.bottomAnchor.constraint(equalTo: editView.bottomAnchor),
+            ]
+            if !portraitImageConstraints.isEmpty{
+                if portraitImageConstraints[0].isActive {
+                    NSLayoutConstraint.deactivate(portraitImageConstraints)
+                }
+            }
+            if !landscapeImageConstraints.isEmpty {
+                if landscapeImageConstraints[0].isActive {
+                    NSLayoutConstraint.deactivate(landscapeImageConstraints)
+                }
+            }
+            NSLayoutConstraint.activate(squareImageConstraints)
+        }
+    }
+
+    func setupPanGesture() {
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panImageView(_:)))
+        quoteBackgroundImage.addGestureRecognizer(panGesture)
+    }
+
     // MARK - Button Actions
+    @objc func panImageView(_ gestureRecognizer: UIPanGestureRecognizer) {
+        guard let panView = gestureRecognizer.view else { return }
+
+        let translation = gestureRecognizer.translation(in: panView.superview)
+        switch gestureRecognizer.state {
+        case .began, .changed:
+            panView.center = CGPoint(
+                x: panView.center.x + translation.x,
+                y: panView.center.y + translation.y)
+            gestureRecognizer.setTranslation(CGPoint.zero, in: panView.superview!)
+        case .ended:
+            let duration: TimeInterval = 0.2
+            correctOffset(for: panView, in: editView, duration: duration)
+        default:
+            panView.frame.origin = imageInitialOrigin
+        }
+
+    }
+    
+    func correctOffset(for panView: UIView, in superView: UIView, duration: TimeInterval) {
+        checkOriginPointsOffset(of: panView, in: superView, duration: duration)
+        checkOriginMaxPointsOffset(of: panView, in: superView, duration: duration)
+    }
+
+    func checkOriginPointsOffset(of panView: UIView, in superView: UIView, duration: TimeInterval) {
+        let superViewframe = superView.safeAreaLayoutGuide.layoutFrame
+        if panView.frame.origin.x > superViewframe.origin.x && panView.frame.origin.y > superViewframe.origin.y{
+            UIView.animate(withDuration: duration) {
+                panView.frame.origin = CGPoint(x: superViewframe.origin.x, y: superViewframe.origin.y)
+            }
+
+        } else if panView.frame.origin.x > superViewframe.origin.x {
+            UIView.animate(withDuration: duration) {
+                panView.frame.origin.x = superViewframe.origin.x
+            }
+        } else if panView.frame.origin.y > superViewframe.origin.y{
+            UIView.animate(withDuration: duration) {
+                panView.frame.origin.y = superViewframe.origin.y
+            }
+        }
+    }
+
+    func checkOriginMaxPointsOffset(of panView: UIView, in superView: UIView, duration: TimeInterval) {
+        let panViewWidth = panView.frame.width
+        let panViewHeight = panView.frame.height
+        let superViewframe = superView.safeAreaLayoutGuide.layoutFrame
+        if panView.frame.maxX < superViewframe.maxX && panView.frame.maxY < superViewframe.maxY {
+            let x = superViewframe.maxX - panViewWidth
+            let y = superViewframe.maxY - panViewHeight
+            UIView.animate(withDuration: duration) {
+                panView.frame.origin = CGPoint(x: x, y: y)
+            }
+        } else if panView.frame.maxX < superViewframe.maxX {
+            UIView.animate(withDuration: duration) {
+                panView.frame.origin.x = superViewframe.maxX - panViewWidth
+            }
+        } else if panView.frame.maxY < superViewframe.maxY {
+            UIView.animate(withDuration: duration) {
+                panView.frame.origin.y = superViewframe.maxY - panViewHeight
+            }
+        }
+    }
 //    @objc func chooseTextColortapped() {
 //        opacitySlider.isHidden = false
 //        colorChooserView.isHidden = false

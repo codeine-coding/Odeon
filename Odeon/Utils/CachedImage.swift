@@ -11,8 +11,9 @@ import UIKit
 let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
+    typealias completionHandler = () -> Void
     
-    func downloadImage(from urlString: String){
+    func downloadImage(from urlString: String, completion: completionHandler?){
         
         // check cache for image first
         if let cachedImage = imageCache.object(forKey: urlString as NSString) {
@@ -31,6 +32,7 @@ extension UIImageView {
                     imageCache.setObject(downloadedImage, forKey: urlString as NSString)
                     self.image = downloadedImage
                 }
+                completion!()
             }
             }.resume()
     }

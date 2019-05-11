@@ -20,8 +20,8 @@ class QuoteDetailController: UIViewController {
                 let releasedOn = film?.Released,
                 let imdbRating = film?.imdbRating
             else { return }
-            self.posterImage.downloadImage(from: posterURL)
-            self.posterBackgroundImage.downloadImage(from: posterURL)
+            self.posterImage.downloadImage(from: posterURL, completion: nil)
+            self.posterBackgroundImage.downloadImage(from: posterURL, completion: nil)
             self.titleLabel.text = title
             self.releasedLabel.text = "Released: \(releasedOn)"
             self.ratedLabel.text = "Rated: \(rated)"

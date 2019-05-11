@@ -17,7 +17,7 @@ class CategoryCell: BaseCollectionViewCell {
             guard let quoteCount = category?.quotes?.count else { return }
             categoryQuoteCount.text = "(\(quoteCount))"
             guard let imageURl = category?.image_url else { return }
-            categoryBackgroundImage.downloadImage(from: imageURl)
+            categoryBackgroundImage.downloadImage(from: imageURl, completion: nil)
             
         }
     }

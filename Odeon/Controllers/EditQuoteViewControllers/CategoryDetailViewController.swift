@@ -16,7 +16,7 @@ class CategoryDetailViewController: UIViewController {
         didSet {
             guard let categoryName = category?.name else { return }
             guard let imageURl = category?.image_url else { return }
-            headerView.headerImage.downloadImage(from: imageURl)
+            headerView.headerImage.downloadImage(from: imageURl, completion: nil)
             headerView.headerTitle.text = categoryName
             guard let red = category?.red, let green = category?.green, let blue = category?.blue else { return }
             self.red = CGFloat(red)
