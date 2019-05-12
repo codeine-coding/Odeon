@@ -80,7 +80,9 @@ platform :ios do
   end
 
   lane :screenshots do 
-  	capture_screenshots
+  	capture_screenshots(
+  		clear_previous_screenshots: true
+  	)
   end
 
   lane :release do
