@@ -32,7 +32,9 @@ extension UIImageView {
                     imageCache.setObject(downloadedImage, forKey: urlString as NSString)
                     self.image = downloadedImage
                 }
-                completion!()
+                if let complete = completion {
+                    complete()
+                }
             }
             }.resume()
     }

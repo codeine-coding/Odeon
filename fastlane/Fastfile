@@ -38,15 +38,13 @@ platform :ios do
 		)
 		register_devices(devices_file: "devices.txt")
 		gym(silent: true, export_method: "app-store", configuration: "Beta")
-		changelog = changelog_from_git_commits(pretty: "%h %s")
 		upload_to_testflight(
 			username: $username,
 			app_identifier: $app_identifier,
 			itc_provider: "HZQ3ZGBLE6",
-			beta_app_description: changelog,
 			beta_app_feedback_email: "allen@codeinecoding.com",
-			# distribute_external: true,
-			# groups: "InnerCircle",
+			distribute_external: true,
+			groups: ["InnerCircle", "SocialMediaTesters"],
 			notify_external_testers: true,
 			reject_build_waiting_for_review: true
 			)
