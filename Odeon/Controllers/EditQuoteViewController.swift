@@ -23,7 +23,7 @@ class EditQuoteViewController: UIViewController {
                 let author = quote?.author,
                 let filmTitle = quote?.film.title,
                 let entertainmentType = quote?.film.type.title
-            else { return }
+                else { return }
             
             if debug {
                 self.quoteContentLabel.text = "Lorem ipsum dolor fames eu, amet elit."
@@ -77,7 +77,7 @@ class EditQuoteViewController: UIViewController {
     var quoteBackgroundImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-//        iv.image = UIImage(named: "")
+        //        iv.image = UIImage(named: "")
         iv.contentMode = .scaleAspectFill
         iv.isUserInteractionEnabled = true
         return iv
@@ -111,15 +111,13 @@ class EditQuoteViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         view.addSubview(editView)
-        print(editView.frame.origin)
-        print(editView.safeAreaLayoutGuide.layoutFrame.origin)
         editView.addSubview(quoteBackgroundImage)
         editView.addSubview(quoteContentLabel)
         editView.addSubview(quoteAuthorLabel)
         editView.addSubview(quoteFilmTitleLabel)
         imageInitialOrigin = quoteBackgroundImage.frame.origin
 
-//        view.addSubview(colorChooserView)
+        //        view.addSubview(colorChooserView)
         
         let cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: self, action: #selector(cancelEdit))
         navigationItem.leftBarButtonItem = cancelButton
@@ -189,6 +187,7 @@ class EditQuoteViewController: UIViewController {
     func setupBackgroundImage() {
         setupBackgroundImageConstraints()
         setupPanGesture()
+        setupPinchGesture()
     }
     func setupBackgroundImageConstraints() {
         guard
@@ -260,6 +259,11 @@ class EditQuoteViewController: UIViewController {
         quoteBackgroundImage.addGestureRecognizer(panGesture)
     }
 
+    func setupPinchGesture() {
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchImageView(_:)))
+        quoteBackgroundImage.addGestureRecognizer(pinchGesture)
+    }
+
     // MARK - Button Actions
     @objc func panImageView(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let panView = gestureRecognizer.view else { return }
@@ -279,8 +283,25 @@ class EditQuoteViewController: UIViewController {
         }
 
     }
+
+    @objc func pinchImageView(_ gesturRecoginzer: UIPinchGestureRecognizer) {
+        guard let pinchView = gesturRecoginzer.view else { return }
+
+        switch gesturRecoginzer.state {
+        case .began, .changed:
+            pinchView.transform = pinchView.transform.scaledBy(x: gesturRecoginzer.scale, y: gesturRecoginzer.scale)
+            gesturRecoginzer.scale = 1.0
+        case .ended:
+            let duration = 0.2
+            correctOffset(for: pinchView, in: editView, duration: duration)
+        default:
+            break
+        }
+
+    }
     
     func correctOffset(for panView: UIView, in superView: UIView, duration: TimeInterval) {
+        checkAllEdgesWithinFrame(of: panView, in: superView, duration: duration)
         checkOriginPointsOffset(of: panView, in: superView, duration: duration)
         checkOriginMaxPointsOffset(of: panView, in: superView, duration: duration)
     }
@@ -323,20 +344,29 @@ class EditQuoteViewController: UIViewController {
             }
         }
     }
-//    @objc func chooseTextColortapped() {
-//        opacitySlider.isHidden = false
-//        colorChooserView.isHidden = false
-//        textAlignmentStackView.isHidden = false
-//    }
+
+
+    func checkAllEdgesWithinFrame(of view: UIView, in superView: UIView, duration: TimeInterval) {
+        if view.frame < superView.frame {
+            UIView.animate(withDuration: duration) {
+                view.transform = .identity
+            }
+        }
+    }
+    //    @objc func chooseTextColortapped() {
+    //        opacitySlider.isHidden = false
+    //        colorChooserView.isHidden = false
+    //        textAlignmentStackView.isHidden = false
+    //    }
     
     @objc func cancelEdit() {
         dismiss(animated: true, completion: nil)
     }
     
-//    @objc func changeOpacity(_ slider: UISlider) {
-//        let alpha = CGFloat(slider.value)
-//        TextOpacity(alpha: alpha)
-//    }
+    //    @objc func changeOpacity(_ slider: UISlider) {
+    //        let alpha = CGFloat(slider.value)
+    //        TextOpacity(alpha: alpha)
+    //    }
     
     @objc func setTextAligment(_ btn: AlignmentButton) {
         quoteContentLabel.textAlignment = btn.textAlignment
@@ -398,5 +428,33 @@ extension EditQuoteViewController: ColorChooserDelegate {
         quoteContentLabel.textColor = color
         quoteAuthorLabel.textColor = color
         quoteFilmTitleLabel.textColor = color
+    }
+}
+
+private extension UIView {
+    var isPortrait: Bool {
+        return self.frame.width < self.frame.height
+    }
+
+    var ratio: CGFloat {
+        get {
+            if self.isPortrait {
+                return self.frame.width / self.frame.height
+            } else {
+                return self.frame.height / self.frame.width
+            }
+        }
+    }
+}
+
+private extension CGRect {
+    static func < (left: CGRect, right: CGRect) -> Bool {
+        if left.height < right.height {
+            return true
+        } else if left.width < right.width {
+            return true
+        } else {
+            return false
+        }
     }
 }
