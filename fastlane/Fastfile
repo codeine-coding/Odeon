@@ -81,7 +81,7 @@ platform :ios do
 
   lane :screenshots do 
   	snapshot(
-  		app_identifier: $app_identifier
+  		app_identifier: $app_identifier,
   		clear_previous_screenshots: true
   	)
   end
