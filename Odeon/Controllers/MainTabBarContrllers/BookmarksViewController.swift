@@ -113,7 +113,6 @@ extension BookmarksViewController: QuoteCellDelegate {
         } else {
             present(destinationController!, animated: true, completion: nil)
         }
-        present(destinationController!, animated: true, completion: nil)
     }
 }
 
