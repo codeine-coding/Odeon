@@ -80,7 +80,8 @@ platform :ios do
   end
 
   lane :screenshots do 
-  	capture_screenshots(
+  	snapshot(
+  		app_identifier: $app_identifier
   		clear_previous_screenshots: true
   	)
   end
