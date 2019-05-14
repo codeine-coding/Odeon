@@ -38,8 +38,8 @@ platform :ios do
 			output_path: $certs_path
 		)
 		sigh(
-			app_identifier: $app_identifier
-			output_path: $profiles_path
+			app_identifier: $app_identifier,
+			output_path: $profiles_path,
 			force: true
 		)
 		register_devices(devices_file: "devices.txt")
