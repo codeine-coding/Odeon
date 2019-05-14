@@ -12,7 +12,8 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
-$certs_path = "./Certificates"
+$certs_path = "./certs"
+$profiles_path = "./profiles"
 $username = "awhearry@gmail.com"
 $app_identifier = "com.codeinetech.Odeon"
 $app_identifier_beta = "com.codeinetech.Odeon-Beta"
@@ -32,9 +33,14 @@ platform :ios do
 
 	desc "Beta realeases"
 	lane :beta do
-		match(git_url: "https://github.com/codeine-coding/Odeon.git",
-			type: "appstore",
+		cert(
+			username: $username,
+			output_path: $certs_path
+		)
+		sigh(
 			app_identifier: $app_identifier
+			output_path: $profiles_path
+			force: true
 		)
 		register_devices(devices_file: "devices.txt")
 		gym(silent: true, export_method: "app-store", configuration: "Beta")
@@ -66,17 +72,6 @@ platform :ios do
 	lane :development do
 		register_devices(devices_file: "devices.txt")
   	# match(type: "development", force_for_new_devices: false)
-  end
-
-  lane :codeSigning do
-  	match(
-  		app_identifier: $app_identifier,
-  		type: "appstore"
-  	)
-  	match(
-  		app_identifier: $app_identifier,
-  		type: "development"
-  	)
   end
 
   lane :screenshots do 
