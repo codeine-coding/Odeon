@@ -6,6 +6,8 @@
 
 # Project Specific
 Odeon/Configs
+certs/
+profiles/
 
 ## Build generated
 build/
