@@ -5,10 +5,7 @@
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 # Project Specific
-Base.xcconfig
-Development.xcconfig
-Beta.xcconfig
-Production.xcconfig
+Odeon/Config
 
 ## Build generated
 build/
