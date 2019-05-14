@@ -31,11 +31,6 @@ fastlane ios push
 fastlane ios development
 ```
 
-### ios codeSigning
-```
-fastlane ios codeSigning
-```
-
 ### ios screenshots
 ```
 fastlane ios screenshots
