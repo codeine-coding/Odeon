@@ -13,42 +13,21 @@ class BackgroundEditViewController: UIViewController {
     
     var editQuoteController: EditQuoteViewController?
     
-    let selectImageBtn: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.backgroundColor = .primary
-        btn.setTitle("Select Background Image", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont(name: Font.Animosa.Bold, size: 18)
-        btn.titleLabel?.numberOfLines = 0
-        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        btn.layer.cornerRadius = 16
-        btn.layer.masksToBounds = true
+    let selectImageBtn: SelectBackgroundButton = {
+        let btn = SelectBackgroundButton(type: .system)
+        btn.setImage(UIImage(named: "unsplashSearch"), for: .normal)
         return btn
     }()
     
-    let selectColorBtn: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.backgroundColor = .primary
-        btn.setTitle("Select Background Color", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont(name: Font.Animosa.Bold, size: 18)
-        btn.titleLabel?.numberOfLines = 0
-        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        btn.layer.cornerRadius = 16
-        btn.layer.masksToBounds = true
+    let selectColorBtn: SelectBackgroundButton = {
+        let btn = SelectBackgroundButton(type: .system)
+        btn.setImage(UIImage(named: "colorFill"), for: .normal)
         return btn
     }()
 
-    let selectFromPhotosBtn: UIButton = {
-        let btn = UIButton(type: .system)
-        btn.backgroundColor = .primary
-        btn.setTitle("Select From Photos", for: .normal)
-        btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont(name: Font.Animosa.Bold, size: 18)
-        btn.titleLabel?.numberOfLines = 0
-        btn.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-        btn.layer.cornerRadius = 16
-        btn.layer.masksToBounds = true
+    let selectFromPhotosBtn: SelectBackgroundButton = {
+        let btn = SelectBackgroundButton(type: .system)
+        btn.setImage(UIImage(named: "photoLibrary"), for: .normal)
         return btn
     }()
     
@@ -80,10 +59,10 @@ class BackgroundEditViewController: UIViewController {
     
     fileprivate func displayConstraints() {
         NSLayoutConstraint.activate([
-            buttonStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            buttonStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             buttonStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
+            buttonStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            buttonStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            buttonStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
         ])
     }
     
@@ -96,10 +75,6 @@ class BackgroundEditViewController: UIViewController {
     }
     
     @objc func imageSelect() {
-//        let backgroundImageChooseVC = StockImageSearchViewController()
-//        backgroundImageChooseVC.editQuoteViewController = editQuoteController
-//        let destination = UINavigationController(rootViewController: backgroundImageChooseVC)
-//        present(destination, animated: true, completion: nil)
         let USConfig = UnsplashPhotoPickerConfiguration(accessKey: Environment.USAccessKey, secretKey: Environment.USSecretKey)
         let desitnation = UnsplashPhotoPicker(configuration: USConfig)
         desitnation.photoPickerDelegate = self

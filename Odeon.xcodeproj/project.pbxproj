@@ -41,6 +41,7 @@
 		9F01ED972260046D009712DE /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED762260046D009712DE /* CachedImage.swift */; };
 		9F01ED982260046D009712DE /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED772260046D009712DE /* Errors.swift */; };
 		9F4442142282830700FC6DA0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4442132282830700FC6DA0 /* Environment.swift */; };
+		9F52E416228DC162008F4CDE /* SelectBackgroundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F52E415228DC162008F4CDE /* SelectBackgroundButton.swift */; };
 		9F6700002260315700329B03 /* DancingScript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFF2260315700329B03 /* DancingScript-Bold.ttf */; };
 		9F6700022260315F00329B03 /* DancingScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F6700012260315F00329B03 /* DancingScript-Regular.ttf */; };
 		9F6700042260317000329B03 /* FrederickatheGreat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F6700032260317000329B03 /* FrederickatheGreat-Regular.ttf */; };
@@ -136,6 +137,7 @@
 		9F4442102282447000FC6DA0 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		9F44421222827E1D00FC6DA0 /* Base.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Base.xcconfig; sourceTree = "<group>"; };
 		9F4442132282830700FC6DA0 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		9F52E415228DC162008F4CDE /* SelectBackgroundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectBackgroundButton.swift; sourceTree = "<group>"; };
 		9F6700012260315F00329B03 /* DancingScript-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Regular.ttf"; sourceTree = "<group>"; };
 		9F6700032260317000329B03 /* FrederickatheGreat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FrederickatheGreat-Regular.ttf"; sourceTree = "<group>"; };
 		9F6700052260317B00329B03 /* JosefinSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		9F01ED592260046D009712DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9F52E415228DC162008F4CDE /* SelectBackgroundButton.swift */,
 				9F01ED5A2260046D009712DE /* CategoryCell.swift */,
 				9F01ED5B2260046D009712DE /* AlignmentButton.swift */,
 				9F01ED5C2260046D009712DE /* SliderStackView.swift */,
@@ -736,6 +739,7 @@
 				9F67FFD922602CCA00329B03 /* BookmarksViewController.swift in Sources */,
 				9F01ED7D2260046D009712DE /* Colors.swift in Sources */,
 				9FB8B1D02283532200AD393E /* HasInterstial.swift in Sources */,
+				9F52E416228DC162008F4CDE /* SelectBackgroundButton.swift in Sources */,
 				9F67FFDB22602D1200329B03 /* CategoryDetailViewController.swift in Sources */,
 				9F67FFE722602E8500329B03 /* EditQuoteViewController.swift in Sources */,
 				9F67FFED22602F0600329B03 /* BackgroundEditViewController.swift in Sources */,
