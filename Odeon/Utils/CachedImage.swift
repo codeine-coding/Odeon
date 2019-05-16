@@ -13,7 +13,7 @@ let imageCache = NSCache<NSString, UIImage>()
 extension UIImageView {
     typealias completionHandler = () -> Void
     
-    func downloadImage(from urlString: String, completion: completionHandler?){
+    func downloadImage(from urlString: String, completion: completionHandler? = nil){
         
         // check cache for image first
         if let cachedImage = imageCache.object(forKey: urlString as NSString) {
