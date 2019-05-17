@@ -20,37 +20,22 @@ class CategoriesViewController: UIViewController {
         didSet { self.collectionView.reloadData() }
     }
     
-    var state: State = .loading {
-        didSet {
-            switch state {
-            case .noData:
-                noDataView.isHidden = false
-                collectionView.isHidden = true
-                loadingIndicator.stopAnimating()
-            case .loading:
-                noDataView.isHidden = true
-                collectionView.isHidden = true
-            case .loaded:
-                noDataView.isHidden = true
-                collectionView.isHidden = false
-                loadingIndicator.stopAnimating()
-            }
-        }
-    }
-    
     var categoryDetailController: CategoryDetailViewController!
-    
-    let noDataView = NoDataView()
+
     var cellFrame: CGRect!
     var cellPosition: CGPoint!
+
+    private lazy var noDataView: NoDataView = {
+        let view = NoDataView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     let loadingIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.style = .whiteLarge
-        view.backgroundColor = .darkGray
-        view.layer.cornerRadius = 20
-        view.clipsToBounds = true
+        view.style = .gray
+        view.hidesWhenStopped = true
         return view
     }()
 
@@ -108,12 +93,15 @@ class CategoriesViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(collectionView)
         view.addSubview(bannerView)
-        view.addSubview(noDataView)
         view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
         CategoryService.shared.getCategories {
             self.categories = CategoryService.shared.categories
-            self.state = self.categories.isEmpty ? .noData : .loaded
+            if self.categories.isEmpty {
+                self.showNoDataView(with: .noResults)
+            } else {
+               self.loadingIndicator.stopAnimating()
+            }
         }
         displayConstraints()
     }
@@ -128,16 +116,31 @@ class CategoriesViewController: UIViewController {
             bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            noDataView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            noDataView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            noDataView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            noDataView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
             loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loadingIndicator.heightAnchor.constraint(equalToConstant: 75),
             loadingIndicator.widthAnchor.constraint(equalToConstant: 75),
             ])
+    }
+
+    private func showNoDataView(with state: EmptyState) {
+        noDataView.state = state
+
+        guard noDataView.superview == nil else { return }
+        loadingIndicator.stopAnimating()
+
+        view.addSubview(noDataView)
+
+        NSLayoutConstraint.activate([
+            noDataView.topAnchor.constraint(equalTo: view.topAnchor),
+            noDataView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            noDataView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            noDataView.rightAnchor.constraint(equalTo: view.rightAnchor)
+        ])
+    }
+
+    private func hidesEmptyView() {
+        noDataView.removeFromSuperview()
     }
     
     // MARK: - Private instance methods
@@ -151,8 +154,14 @@ class CategoriesViewController: UIViewController {
         filteredCategories = categories.filter({ (category: Category) -> Bool in
             return category.name.lowercased().contains(searchText.lowercased())
         })
-        
-        state = filteredCategories.isEmpty && !searchBarIsEmpty() ? .noData : .loaded
+
+
+        if filteredCategories.isEmpty && !searchBarIsEmpty() {
+            loadingIndicator.stopAnimating()
+            showNoDataView(with: .noResults)
+        } else {
+            hidesEmptyView()
+        }
     }
     
     private func isFiltering() -> Bool {

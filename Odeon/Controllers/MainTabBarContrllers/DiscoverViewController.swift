@@ -29,6 +29,12 @@ class DiscoverViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
+
+    private lazy var noDataView: NoDataView = {
+        let view = NoDataView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -69,7 +75,6 @@ class DiscoverViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        request.testDevices = [ "d61a2f834f47d41f5beceaa02715e221" ]
         interstitial = createAndLoadInterstitial()
         collectionView.register(QuoteCell.self, forCellWithReuseIdentifier: cellID)
         QuoteService.shared.getQuotes {}
@@ -99,6 +104,25 @@ class DiscoverViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
+
+    private func showNoDataView(with state: EmptyState) {
+        noDataView.state = state
+
+        guard noDataView.superview == nil else { return }
+
+        view.addSubview(noDataView)
+
+        NSLayoutConstraint.activate([
+            noDataView.topAnchor.constraint(equalTo: view.topAnchor),
+            noDataView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            noDataView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            noDataView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            ])
+    }
+
+    private func hidesEmptyView() {
+        noDataView.removeFromSuperview()
+    }
     
     // MARK: - Private instance methods
     
@@ -116,8 +140,12 @@ class DiscoverViewController: UIViewController {
             if quote.film.type.title.lowercased().contains(text) { return true }
             return false
         })
-        
-//        state = filteredCategories.isEmpty && !searchBarIsEmpty() ? .noData : .loaded
+
+        if filteredQuotes.isEmpty && !searchBarIsEmpty() {
+            showNoDataView(with: .noResults)
+        } else {
+            hidesEmptyView()
+        }
     }
     
     private func isFiltering() -> Bool {

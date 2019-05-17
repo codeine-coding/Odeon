@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
     var InfoBtnClickedCount: Int = 0
     var mainColor: UIColor = #colorLiteral(red: 0.4941176471, green: 0.4078431373, blue: 0.7921568627, alpha: 1)
     var bookmarkManager = BookmarkedQuoteManager()
-    let noDataView = NoDataView()
     
     var qotd: [Quote] = [] {
         didSet {
@@ -24,32 +23,18 @@ class HomeViewController: UIViewController {
             self.pageControl.numberOfPages = qotd.count
         }
     }
-    
-    var state: State = .loading {
-        didSet {
-            switch state {
-            case .noData:
-                noDataView.isHidden = false
-                collectionView.isHidden = true
-                loadingIndicator.stopAnimating()
-            case .loading:
-                noDataView.isHidden = true
-                collectionView.isHidden = true
-            case .loaded:
-                noDataView.isHidden = true
-                collectionView.isHidden = false
-                loadingIndicator.stopAnimating()
-            }
-        }
-    }
+
+    private lazy var noDataView: NoDataView = {
+        let view = NoDataView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     let loadingIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.style = .whiteLarge
-        view.backgroundColor = .darkGray
-        view.layer.cornerRadius = 20
-        view.clipsToBounds = true
+        view.style = .white
+        view.hidesWhenStopped = true
         return view
     }()
     
@@ -86,19 +71,24 @@ class HomeViewController: UIViewController {
         setupView()
     }
     
-    func setupView() {
+    private func setupView() {
         navigationItem.title = "Quotes of The Day"
         view.addSubview(collectionView)
         view.addSubview(pageControl)
+        view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
         QuoteService.shared.getQuotesOfTheDay {
             self.qotd = QuoteService.shared.qotd
-            self.state = self.qotd.isEmpty ? .noData : .loaded
+            if self.qotd.isEmpty {
+                self.showNoDataView(with: .noResults)
+            } else {
+                self.loadingIndicator.stopAnimating()
+            }
         }
         displayConstraints()
     }
     
-    func displayConstraints() {
+    private func displayConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -107,7 +97,32 @@ class HomeViewController: UIViewController {
             
             pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -25),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            loadingIndicator.heightAnchor.constraint(equalToConstant: 75),
+            loadingIndicator.widthAnchor.constraint(equalToConstant: 75),
         ])
+    }
+
+    private func showNoDataView(with state: EmptyState) {
+        noDataView.state = state
+
+        guard noDataView.superview == nil else { return }
+        loadingIndicator.stopAnimating()
+
+        view.addSubview(noDataView)
+
+        NSLayoutConstraint.activate([
+            noDataView.topAnchor.constraint(equalTo: view.topAnchor),
+            noDataView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            noDataView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            noDataView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            ])
+    }
+
+    private func hidesEmptyView() {
+        noDataView.removeFromSuperview()
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {

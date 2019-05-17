@@ -8,38 +8,87 @@
 
 import UIKit
 
+enum EmptyState {
+    case noResults
+    // TODO: - Implement no internet & server error
+
+    var title: String {
+        switch self {
+        case .noResults:
+            return "No Results Found"
+        }
+    }
+
+    var message: String {
+        switch self {
+        case .noResults:
+            return "Try another search."
+        }
+    }
+}
+
 class NoDataView: UIView {
+
+    // MARK: - Properties
+
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textColor = .darkGray
+        label.font = UIFont(name: Font.Animosa.Bold, size: 26)
+        label.textAlignment = .center
+        return label
+    }()
     
-    let messageLabel: UILabel = {
+    private let messageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textColor = .lightGray
-        label.text = "No data to display currently"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        label.font = UIFont(name: Font.Animosa.Bold, size: 18)
+        label.textAlignment = .center
         return label
     }()
+
+    var state: EmptyState? {
+        didSet{
+            titleLabel.text = state?.title
+            messageLabel.text = state?.message
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Setup Views
     
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
+        addSubview(titleLabel)
         addSubview(messageLabel)
         displayConstraints()
     }
     
     private func displayConstraints() {
         NSLayoutConstraint.activate([
-            messageLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            messageLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
+            messageLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            messageLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
         ])
     }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
 }

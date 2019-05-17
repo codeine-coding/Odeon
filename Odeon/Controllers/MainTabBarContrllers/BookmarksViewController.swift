@@ -47,7 +47,7 @@ class BookmarksViewController: UIViewController {
         displayConstraints()
     }
 
-    func displayConstraints() {
+    private func displayConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
