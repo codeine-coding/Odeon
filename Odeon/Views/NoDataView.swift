@@ -11,11 +11,14 @@ import UIKit
 enum EmptyState {
     case noResults
     // TODO: - Implement no internet & server error
+    case serverError
 
     var title: String {
         switch self {
         case .noResults:
             return "No Results Found"
+        case .serverError:
+            return "Server Errror"
         }
     }
 
@@ -23,6 +26,8 @@ enum EmptyState {
         switch self {
         case .noResults:
             return "Try another search."
+        case .serverError:
+            return "Oops! Something went wrong on the server"
         }
     }
 }

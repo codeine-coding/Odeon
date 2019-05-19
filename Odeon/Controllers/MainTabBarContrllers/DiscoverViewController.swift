@@ -77,7 +77,7 @@ class DiscoverViewController: UIViewController {
         super.viewDidLoad()
         interstitial = createAndLoadInterstitial()
         collectionView.register(QuoteCell.self, forCellWithReuseIdentifier: cellID)
-        QuoteService.shared.getQuotes {}
+        loadQutoes()
         setupView()
     }
     
@@ -103,6 +103,18 @@ class DiscoverViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
+    }
+
+    private func loadQutoes() {
+        QuoteService.shared.getQuotes(completed: quoteSuccess, failure: quotesError)
+    }
+
+    private func quoteSuccess() {
+
+    }
+
+    private func quotesError() {
+        showNoDataView(with: .serverError)
     }
 
     private func showNoDataView(with state: EmptyState) {

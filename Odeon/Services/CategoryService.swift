@@ -9,12 +9,24 @@
 import Foundation
 
 class CategoryService {
+    typealias CompletionHandler = () -> Void
     static let shared = CategoryService()
     var categories = [Category]()
     
-    func getCategories(completed: @escaping () -> Void) {
+    func getCategories(completed: @escaping CompletionHandler, failure: CompletionHandler? = nil) {
         URLSession.shared.dataTask(with: Environment.categoriesURL) { (data, response, error) in
             guard let data = data else { return }
+            guard
+                let response = response as? HTTPURLResponse,
+                response.statusCode == 200
+                else {
+                    if let failure = failure {
+                        DispatchQueue.main.async {
+                            failure()
+                        }
+                    }
+                    return
+            }
             
             do {
                 self.categories = try JSONDecoder().decode([Category].self, from: data)

@@ -77,14 +77,23 @@ class HomeViewController: UIViewController {
         view.addSubview(pageControl)
         view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
-        QuoteService.shared.getQuotesOfTheDay {
-            self.qotd = QuoteService.shared.qotd
-            if self.qotd.isEmpty {
-                self.showNoDataView(with: .noResults)
-            } else {
-                self.loadingIndicator.stopAnimating()
-            }
-        }
+        loadQuotes()
+
+//        QuoteService.shared.getQuotesOfTheDay { (response) in
+//            guard let response = response else { return }
+//            print("RESPONSE CODE:", response.statusCode)
+//            if response.statusCode == 200 {
+//                self.qotd = QuoteService.shared.qotd
+//                if self.qotd.isEmpty {
+//                    self.showNoDataView(with: .noResults)
+//                } else {
+//                    self.loadingIndicator.stopAnimating()
+//                }
+//            } else {
+//                self.loadingIndicator.stopAnimating()
+//                self.showNoDataView(with: .serverError)
+//            }
+//        }
         displayConstraints()
     }
     
@@ -119,6 +128,23 @@ class HomeViewController: UIViewController {
             noDataView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             noDataView.rightAnchor.constraint(equalTo: view.rightAnchor)
             ])
+    }
+
+    private func loadQuotes() {
+        QuoteService.shared.getQuotesOfTheDay(completed: quoteSuccess, failure: quotesError)
+    }
+
+    private func quoteSuccess() {
+        self.qotd = QuoteService.shared.qotd
+        if self.qotd.isEmpty {
+            self.showNoDataView(with: .noResults)
+        } else {
+            self.loadingIndicator.stopAnimating()
+        }
+    }
+
+    private func quotesError() {
+        self.showNoDataView(with: .serverError)
     }
 
     private func hidesEmptyView() {

@@ -95,14 +95,7 @@ class CategoriesViewController: UIViewController {
         view.addSubview(bannerView)
         view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
-        CategoryService.shared.getCategories {
-            self.categories = CategoryService.shared.categories
-            if self.categories.isEmpty {
-                self.showNoDataView(with: .noResults)
-            } else {
-               self.loadingIndicator.stopAnimating()
-            }
-        }
+        loadCategories()
         displayConstraints()
     }
     
@@ -121,6 +114,23 @@ class CategoriesViewController: UIViewController {
             loadingIndicator.heightAnchor.constraint(equalToConstant: 75),
             loadingIndicator.widthAnchor.constraint(equalToConstant: 75),
             ])
+    }
+
+    private func loadCategories() {
+        CategoryService.shared.getCategories(completed: categorySuccess, failure: categoryFailure)
+    }
+
+    private func categorySuccess() {
+        self.categories = CategoryService.shared.categories
+        if self.categories.isEmpty {
+            self.showNoDataView(with: .noResults)
+        } else {
+            self.loadingIndicator.stopAnimating()
+        }
+    }
+
+    private func categoryFailure() {
+        showNoDataView(with: .serverError)
     }
 
     private func showNoDataView(with state: EmptyState) {
