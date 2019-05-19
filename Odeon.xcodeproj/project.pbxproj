@@ -74,6 +74,7 @@
 		9F67FFFE2260314C00329B03 /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFD2260314C00329B03 /* Bangers-Regular.ttf */; };
 		9FB8B1D02283532200AD393E /* HasInterstial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8B1CF2283532200AD393E /* HasInterstial.swift */; };
 		9FCA0F792279462F00AC3CBF /* OdeonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA0F782279462F00AC3CBF /* OdeonTests.swift */; };
+		9FFE088D2291BC12002FF7CE /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE088C2291BC12002FF7CE /* QuoteView.swift */; };
 		F7839F088A023A0AD914CACF /* Pods_Odeon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B3D732680336E8AE82D16 /* Pods_Odeon.framework */; };
 /* End PBXBuildFile section */
 
@@ -174,6 +175,7 @@
 		9FCA0F762279462F00AC3CBF /* OdeonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdeonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCA0F782279462F00AC3CBF /* OdeonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdeonTests.swift; sourceTree = "<group>"; };
 		9FCA0F7A2279462F00AC3CBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FFE088C2291BC12002FF7CE /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		D3E2CAA76919DD40F3688A41 /* Pods-Odeon.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odeon.beta.xcconfig"; path = "Pods/Target Support Files/Pods-Odeon/Pods-Odeon.beta.xcconfig"; sourceTree = "<group>"; };
 		D467B19D31A9A3326989B24D /* Pods-Odeon.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odeon.production.xcconfig"; path = "Pods/Target Support Files/Pods-Odeon/Pods-Odeon.production.xcconfig"; sourceTree = "<group>"; };
 		D87081519239D562343536D6 /* Pods-Odeon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odeon.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Odeon/Pods-Odeon.debug.xcconfig"; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 		9F01ED592260046D009712DE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9FFE088C2291BC12002FF7CE /* QuoteView.swift */,
 				9F52E415228DC162008F4CDE /* SelectBackgroundButton.swift */,
 				9F01ED5A2260046D009712DE /* CategoryCell.swift */,
 				9F01ED5B2260046D009712DE /* AlignmentButton.swift */,
@@ -747,6 +750,7 @@
 				9F01ED852260046D009712DE /* ColorChooserView.swift in Sources */,
 				9F01ED8B2260046D009712DE /* CategoryService.swift in Sources */,
 				9F01ED832260046D009712DE /* QuoteCell.swift in Sources */,
+				9FFE088D2291BC12002FF7CE /* QuoteView.swift in Sources */,
 				9F01ED842260046D009712DE /* SliderLabel.swift in Sources */,
 				9F67FFEB22602EE500329B03 /* EditViewTabBarController.swift in Sources */,
 				9F01ED802260046D009712DE /* CategoryCell.swift in Sources */,

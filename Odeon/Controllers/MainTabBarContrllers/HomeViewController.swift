@@ -169,7 +169,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote) ? true: false
         cell.delegate = self
         cell.backgroundColor = mainColor
-        cell.quote = quote
+        cell.quoteView.quote = quote
         return cell
     }
     

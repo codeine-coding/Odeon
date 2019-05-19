@@ -186,7 +186,7 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
         if isFiltering() {
             quote = filteredQuotes[indexPath.row]
             cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote) ? true: false
-            cell.quote = quote
+            cell.quoteView.quote = quote
             cell.backgroundColor = #colorLiteral(red: 0.09803921569, green: 0.6549019608, blue: 0.7529411765, alpha: 1)
             cell.delegate = self
             return cell
@@ -209,7 +209,7 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationController = EditQuoteViewController()
-        destinationController.quote = filteredQuotes[indexPath.row]
+        destinationController.quoteView.quote = filteredQuotes[indexPath.row]
         present(UINavigationController(rootViewController: destinationController), animated: true, completion: nil)
     }
 

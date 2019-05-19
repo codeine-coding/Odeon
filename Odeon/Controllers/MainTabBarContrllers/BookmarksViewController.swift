@@ -65,7 +65,7 @@ extension BookmarksViewController: UICollectionViewDelegate, UICollectionViewDat
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
-        cell.quote = bookmarkManager.allBookmarks[indexPath.row]
+        cell.quoteView.quote = bookmarkManager.allBookmarks[indexPath.row]
         cell.isBookmarked = true
         cell.delegate = self
         cell.bookmarkController = self
@@ -84,7 +84,7 @@ extension BookmarksViewController: UICollectionViewDelegate, UICollectionViewDat
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationController = EditQuoteViewController()
-        destinationController.quote = bookmarkManager.allBookmarks[indexPath.row]
+        destinationController.quoteView.quote = bookmarkManager.allBookmarks[indexPath.row]
         present(UINavigationController(rootViewController: destinationController), animated: true, completion: nil)
     }
 

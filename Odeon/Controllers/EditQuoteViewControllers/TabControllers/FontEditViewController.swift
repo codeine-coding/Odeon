@@ -33,7 +33,7 @@ class FontEditViewController: UIViewController {
     let fontSizeLabel = SliderLabel("Font Size", frame: .zero)
     
     lazy var fontSizeSlider: UISlider = {
-        let maxValue = self.editQuoteController?.quoteContentLabel.font.pointSize
+        let maxValue = self.editQuoteController?.quoteView.quoteContentLabel.font.pointSize
         let slider = UISlider()
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
@@ -68,7 +68,7 @@ class FontEditViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = Float((self.editQuoteController?.editView.frame.origin.x)!)
         slider.maximumValue = Float((self.editQuoteController?.editView.frame.height)!)
-        slider.value = Float((self.editQuoteController?.quoteContentLabel.center.y)!)
+        slider.value = Float((self.editQuoteController?.quoteView.quoteContentLabel.center.y)!)
         slider.isContinuous = true
         slider.tintColor = .primary
         return slider
@@ -83,7 +83,7 @@ class FontEditViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = Float((self.editQuoteController?.editView.frame.minX)!)
         slider.maximumValue = Float((self.editQuoteController?.editView.frame.maxX)!)
-        slider.value = Float((self.editQuoteController?.quoteContentLabel.center.x)!)
+        slider.value = Float((self.editQuoteController?.quoteView.quoteContentLabel.center.x)!)
         slider.isContinuous = true
         slider.tintColor = .primary
         return slider
@@ -99,7 +99,7 @@ class FontEditViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
         slider.maximumValue = 1
-        slider.value = Float((self.editQuoteController?.quoteContentLabel.layer.shadowOpacity)!)
+        slider.value = Float((self.editQuoteController?.quoteView.quoteContentLabel.layer.shadowOpacity)!)
         slider.isContinuous = true
         slider.tintColor = .primary
         return slider
@@ -114,7 +114,7 @@ class FontEditViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = -50
         slider.maximumValue = 50
-        slider.value = Float((self.editQuoteController?.quoteContentLabel.layer.shadowOffset.width)!)
+        slider.value = Float((self.editQuoteController?.quoteView.quoteContentLabel.layer.shadowOffset.width)!)
         slider.isContinuous = true
         slider.tintColor = .primary
         return slider
@@ -129,7 +129,7 @@ class FontEditViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = -50
         slider.maximumValue = 50
-        slider.value = Float((self.editQuoteController?.quoteContentLabel.layer.shadowOffset.height)!)
+        slider.value = Float((self.editQuoteController?.quoteView.quoteContentLabel.layer.shadowOffset.height)!)
         slider.isContinuous = true
         slider.tintColor = .primary
         return slider
@@ -144,7 +144,7 @@ class FontEditViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         slider.minimumValue = 0
         slider.maximumValue = 50
-        slider.value = Float((self.editQuoteController?.quoteContentLabel.layer.shadowRadius)!)
+        slider.value = Float((self.editQuoteController?.quoteView.quoteContentLabel.layer.shadowRadius)!)
         slider.isContinuous = true
         slider.tintColor = .primary
         return slider
@@ -266,29 +266,29 @@ class FontEditViewController: UIViewController {
     }
     
     func textOpacity(alpha: CGFloat) {
-        self.editQuoteController?.quoteContentLabel.alpha = alpha
-        self.editQuoteController?.quoteAuthorLabel.alpha = alpha
-        self.editQuoteController?.quoteFilmTitleLabel.alpha = alpha
+        self.editQuoteController?.quoteView.quoteContentLabel.alpha = alpha
+        self.editQuoteController?.quoteView.quoteAuthorLabel.alpha = alpha
+        self.editQuoteController?.quoteView.quoteFilmTitleLabel.alpha = alpha
         
     }
     
     func shadowOpacity(alpha: Float) {
-        self.editQuoteController?.quoteContentLabel.layer.shadowOpacity = alpha
-        self.editQuoteController?.quoteAuthorLabel.layer.shadowOpacity = alpha
-        self.editQuoteController?.quoteFilmTitleLabel.layer.shadowOpacity = alpha
+        self.editQuoteController?.quoteView.quoteContentLabel.layer.shadowOpacity = alpha
+        self.editQuoteController?.quoteView.quoteAuthorLabel.layer.shadowOpacity = alpha
+        self.editQuoteController?.quoteView.quoteFilmTitleLabel.layer.shadowOpacity = alpha
     }
     
     func shadowRadius(radius: CGFloat) {
-        self.editQuoteController?.quoteContentLabel.layer.shadowRadius = radius
-        self.editQuoteController?.quoteAuthorLabel.layer.shadowRadius = radius
-        self.editQuoteController?.quoteFilmTitleLabel.layer.shadowRadius = radius
+        self.editQuoteController?.quoteView.quoteContentLabel.layer.shadowRadius = radius
+        self.editQuoteController?.quoteView.quoteAuthorLabel.layer.shadowRadius = radius
+        self.editQuoteController?.quoteView.quoteFilmTitleLabel.layer.shadowRadius = radius
     }
     
     //
     //// Triggered Event Functions
     //
     @objc func setTextAligment(_ btn: AlignmentButton) {
-        self.editQuoteController?.quoteContentLabel.textAlignment = btn.textAlignment
+        self.editQuoteController?.quoteView.quoteContentLabel.textAlignment = btn.textAlignment
     }
     
     @objc func changeOpacity(_ slider: UISlider) {
@@ -297,39 +297,39 @@ class FontEditViewController: UIViewController {
     }
     
     @objc func changeFont(_ slider: UISlider) {
-        guard let contentLabelFont = self.editQuoteController?.quoteContentLabel.font else { return }
-        var expectedFont = self.editQuoteController?.quoteContentLabel.font
+        guard let contentLabelFont = self.editQuoteController?.quoteView.quoteContentLabel.font else { return }
+        var expectedFont = self.editQuoteController?.quoteView.quoteContentLabel.font
         let currentFontSize = contentLabelFont.pointSize
         let fontSize = CGFloat(slider.value)
         
-        expectedFont = self.editQuoteController?.quoteContentLabel.font.withSize(contentLabelFont.pointSize - currentFontSize + fontSize )
+        expectedFont = self.editQuoteController?.quoteView.quoteContentLabel.font.withSize(contentLabelFont.pointSize - currentFontSize + fontSize )
         
-        self.editQuoteController?.quoteContentLabel.font = expectedFont
+        self.editQuoteController?.quoteView.quoteContentLabel.font = expectedFont
     }
     
     @objc func changeScale(_ slider: UISlider) {
         let scale = CGFloat(slider.value)
-        guard let label = self.editQuoteController?.quoteContentLabel else { return }
+        guard let label = self.editQuoteController?.quoteView.quoteContentLabel else { return }
         
         label.transform = CGAffineTransform(scaleX: scale, y: scale)
     }
     
     @objc func changeYPosition(_ slider: UISlider) {
-        guard let label = self.editQuoteController?.quoteContentLabel else { return }
+        guard let label = self.editQuoteController?.quoteView.quoteContentLabel else { return }
         let yPosition = CGFloat(slider.value)
         
         label.center.y = yPosition
     }
     
     @objc func changeXPosition(_ slider: UISlider) {
-        guard let label = self.editQuoteController?.quoteContentLabel else { return }
+        guard let label = self.editQuoteController?.quoteView.quoteContentLabel else { return }
         let xPosition = CGFloat(slider.value)
         
         label.center.x = xPosition
     }
     
     @objc func changeShadowOffsetX(_ slider: UISlider) {
-        guard let label = self.editQuoteController?.quoteContentLabel else { return }
+        guard let label = self.editQuoteController?.quoteView.quoteContentLabel else { return }
         
         let xOffset = CGFloat(slider.value)
         
@@ -338,7 +338,7 @@ class FontEditViewController: UIViewController {
     }
     
     @objc func changeShadowOffsetY(_ slider: UISlider) {
-        guard let label = self.editQuoteController?.quoteContentLabel else { return }
+        guard let label = self.editQuoteController?.quoteView.quoteContentLabel else { return }
         
         let yOffset = CGFloat(slider.value)
         

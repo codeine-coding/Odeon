@@ -10,86 +10,22 @@ import UIKit
 //import QuoteInfoKit
 
 class EditQuoteViewController: UIViewController {
-    var debug = false
     var quoteBkgdColor: UIColor?
     var imageInitialOrigin = CGPoint()
     var squareImageConstraints = [NSLayoutConstraint]()
     var portraitImageConstraints = [NSLayoutConstraint]()
     var landscapeImageConstraints = [NSLayoutConstraint]()
-    
-    var quote: Quote? {
-        didSet {
-            guard let content = quote?.content,
-                let author = quote?.author,
-                let filmTitle = quote?.film.title,
-                let entertainmentType = quote?.film.type.title
-                else { return }
-            
-            if debug {
-                self.quoteContentLabel.text = "Lorem ipsum dolor fames eu, amet elit."
-                view.layoutIfNeeded()
-                self.quoteContentLabel.updateTextFont()
-                self.quoteAuthorLabel.text = ""
-                self.quoteFilmTitleLabel.text = ""
-            } else {
-                self.quoteContentLabel.text = "\(content)"
-                view.layoutIfNeeded()
-                self.quoteContentLabel.updateTextFont()
-                self.quoteAuthorLabel.text = "- \(author)"
-                self.quoteFilmTitleLabel.text = "\(filmTitle) (\(entertainmentType))"
-            }
-            
-        }
-    }
-    
-    let quoteContentLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.font = UIFont(name: Font.Animosa.Regular, size: 15)
-        label.sizeToFit()
-        label.numberOfLines = 0
-        label.textColor = .white
-        label.textAlignment = .center
-        return label
-    }()
-    let quoteAuthorLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.font = UIFont(name: Font.Animosa.Regular, size: 15)
-        label.textColor = .white
-        label.textAlignment = .right
-        return label
-    }()
-    
-    let quoteFilmTitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.font = UIFont(name: Font.Animosa.Regular, size: 15)
-        label.textColor = .white
-        label.numberOfLines = 0
-        label.textAlignment = .right
-        return label
-    }()
-    
-    var quoteBackgroundImage: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        //        iv.image = UIImage(named: "")
-        iv.contentMode = .scaleAspectFill
-        iv.isUserInteractionEnabled = true
-        return iv
-    }()
-    
+
+    let quoteView = QuoteView()
+
+    lazy var quoteBackgroundImage = self.quoteView.quoteBackgroundImage
+
     let editView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-
     
     lazy var colorChooserView: ColorChooserView = {
         let view = ColorChooserView()
@@ -111,10 +47,7 @@ class EditQuoteViewController: UIViewController {
     private func setupView() {
         view.backgroundColor = .white
         view.addSubview(editView)
-        editView.addSubview(quoteBackgroundImage)
-        editView.addSubview(quoteContentLabel)
-        editView.addSubview(quoteAuthorLabel)
-        editView.addSubview(quoteFilmTitleLabel)
+        editView.addSubview(quoteView)
         imageInitialOrigin = quoteBackgroundImage.frame.origin
 
         //        view.addSubview(colorChooserView)
@@ -142,20 +75,11 @@ class EditQuoteViewController: UIViewController {
             editView.widthAnchor.constraint(equalToConstant: view.frame.width),
             editView.heightAnchor.constraint(equalToConstant: view.frame.width),
             editView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            
-            quoteFilmTitleLabel.bottomAnchor.constraint(equalTo: editView.bottomAnchor, constant: -8),
-            quoteFilmTitleLabel.leadingAnchor.constraint(equalTo: editView.leadingAnchor, constant: 8),
-            quoteFilmTitleLabel.trailingAnchor.constraint(equalTo: editView.trailingAnchor, constant: -8),
-            
-            quoteAuthorLabel.bottomAnchor.constraint(equalTo: quoteFilmTitleLabel.topAnchor, constant: -8),
-            quoteAuthorLabel.leadingAnchor.constraint(equalTo: editView.leadingAnchor, constant: 8),
-            quoteAuthorLabel.trailingAnchor.constraint(equalTo: editView.trailingAnchor, constant: -8),
-            
-            quoteContentLabel.topAnchor.constraint(equalTo: editView.topAnchor, constant: 52),
-            quoteContentLabel.bottomAnchor.constraint(equalTo: quoteAuthorLabel.topAnchor, constant: -16),
-            quoteContentLabel.leadingAnchor.constraint(equalTo: editView.leadingAnchor, constant: 16),
-            quoteContentLabel.trailingAnchor.constraint(equalTo: editView.trailingAnchor, constant: -16),
-            quoteContentLabel.heightAnchor.constraint(equalTo: quoteContentLabel.widthAnchor, multiplier: 0.74344023),
+
+            quoteView.topAnchor.constraint(equalTo: editView.topAnchor),
+            quoteView.bottomAnchor.constraint(equalTo: editView.bottomAnchor),
+            quoteView.leadingAnchor.constraint(equalTo: editView.leadingAnchor),
+            quoteView.trailingAnchor.constraint(equalTo: editView.trailingAnchor),
 
             editBarView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             editBarView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -178,9 +102,9 @@ class EditQuoteViewController: UIViewController {
     }
     
     func TextOpacity(alpha: CGFloat) {
-        quoteContentLabel.alpha = alpha
-        quoteAuthorLabel.alpha = alpha
-        quoteFilmTitleLabel.alpha = alpha
+        quoteView.quoteContentLabel.alpha = alpha
+        quoteView.quoteAuthorLabel.alpha = alpha
+        quoteView.quoteFilmTitleLabel.alpha = alpha
 
     }
     
@@ -369,7 +293,7 @@ class EditQuoteViewController: UIViewController {
     //    }
     
     @objc func setTextAligment(_ btn: AlignmentButton) {
-        quoteContentLabel.textAlignment = btn.textAlignment
+        quoteView.quoteContentLabel.textAlignment = btn.textAlignment
     }
     
     @objc func ShareToIg() {
@@ -377,7 +301,7 @@ class EditQuoteViewController: UIViewController {
         if UIApplication.shared.canOpenURL(instagramURL! as URL) {
             let image = getImageFromView()
             InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: image, instagramCaption: "My Photo", view: self.view)
-            copyTextToInstagram(quote)
+            copyTextToInstagram(quoteView.quote)
         } else {
             let NoIGAlert = UIAlertController(title: InstagramManager.kAlertViewTitle, message: InstagramManager.kAlertViewMessage, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -425,9 +349,9 @@ class EditQuoteViewController: UIViewController {
 
 extension EditQuoteViewController: ColorChooserDelegate {
     func didSelectTextColor(color: UIColor) {
-        quoteContentLabel.textColor = color
-        quoteAuthorLabel.textColor = color
-        quoteFilmTitleLabel.textColor = color
+        quoteView.quoteContentLabel.textColor = color
+        quoteView.quoteAuthorLabel.textColor = color
+        quoteView.quoteFilmTitleLabel.textColor = color
     }
 }
 

@@ -120,7 +120,7 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
         let quote = category?.quotes?[indexPath.row]
         //        let quote = sampleQuotes[indexPath.row]
-        cell.quote = quote
+        cell.quoteView.quote = quote
         cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote!) ? true: false
         cell.delegate = self
         cell.contentView.backgroundColor = UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
@@ -138,7 +138,7 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationController = EditQuoteViewController()
-        destinationController.quote = category?.quotes?[indexPath.row]
+        destinationController.quoteView.quote = category?.quotes?[indexPath.row]
         present(UINavigationController(rootViewController: destinationController), animated: true, completion: nil)
     }
 

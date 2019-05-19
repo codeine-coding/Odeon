@@ -19,6 +19,7 @@ class QuoteCell: BaseCollectionViewCell {
     // MARK - Properties
     //
     
+    let quoteView = QuoteView()
     var delegate: QuoteCellDelegate?
     var bookmarkController: BookmarksViewController?
     var bookmarkManager = BookmarkedQuoteManager()
@@ -26,18 +27,7 @@ class QuoteCell: BaseCollectionViewCell {
     //
     // MARK - Property Observers
     //
-    
-    var quote: Quote? {
-        didSet {
-            guard let content = quote?.content, let author = quote?.author, let filmTitle = quote?.film.title, let entertainmentType = quote?.film.type.title else { return }
-            self.quoteContentLabel.text = "\(content)"
-            layoutIfNeeded()
-            self.quoteContentLabel.updateTextFont()
-            self.quoteAuthorLabel.text = "- \(author)"
-            self.quoteFilmTitleLabel.text = "\(filmTitle) (\(entertainmentType))"
-        }
-    }
-    
+
     var isBookmarked: Bool = false {
         didSet {
             if isBookmarked {
@@ -58,44 +48,7 @@ class QuoteCell: BaseCollectionViewCell {
         backgroundColor = .black
         return view
     }()
-    
-    let quoteContentLabel: UILabel = {
-        let view = UILabel()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = ""
-        let customFont = UIFont(name: Font.Animosa.Regular, size: 20)
-        view.font = customFont
-        view.textColor = .white
-        view.numberOfLines = 0
-        view.lineBreakMode = .byWordWrapping
-        view.backgroundColor = .clear
-        view.clipsToBounds = true
-        view.textAlignment = .center
-        return view
-    }()
-    let quoteAuthorLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.font = UIFont(name: Font.Animosa.Regular, size: 15)
-        label.textColor = .white
-        label.sizeToFit()
-        label.textAlignment = .right
-        return label
-    }()
-    
-    let quoteFilmTitleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = ""
-        label.font = UIFont(name: Font.Animosa.Regular, size: 15)
-        label.textColor = .white
-        label.numberOfLines = 0
-        label.textAlignment = .right
-        label.sizeToFit()
-        return label
-    }()
-    
+
     let view: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -125,9 +78,7 @@ class QuoteCell: BaseCollectionViewCell {
         addSubview(view)
         layer.cornerRadius = 8
         clipsToBounds = true
-        view.addSubview(quoteContentLabel)
-        view.addSubview(quoteAuthorLabel)
-        view.addSubview(quoteFilmTitleLabel)
+        view.addSubview(quoteView)
         view.addSubview(infoButton)
         view.addSubview(bookmarkButton)
         addSubview(overlayView)
@@ -142,6 +93,11 @@ class QuoteCell: BaseCollectionViewCell {
             view.widthAnchor.constraint(equalToConstant: self.frame.width),
             view.heightAnchor.constraint(equalToConstant: self.frame.width),
             view.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+            quoteView.topAnchor.constraint(equalTo: view.topAnchor),
+            quoteView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            quoteView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            quoteView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             bookmarkButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
             bookmarkButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
@@ -149,20 +105,6 @@ class QuoteCell: BaseCollectionViewCell {
             
             infoButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 8),
             infoButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            
-            quoteFilmTitleLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8),
-            quoteFilmTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            quoteFilmTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            
-            quoteAuthorLabel.bottomAnchor.constraint(equalTo: quoteFilmTitleLabel.topAnchor, constant: -8),
-            quoteAuthorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
-            quoteAuthorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            
-            quoteContentLabel.topAnchor.constraint(equalTo: bookmarkButton.bottomAnchor, constant: 16),
-            quoteContentLabel.bottomAnchor.constraint(equalTo: quoteAuthorLabel.topAnchor, constant: -16),
-            quoteContentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            quoteContentLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            quoteContentLabel.heightAnchor.constraint(equalTo: quoteContentLabel.widthAnchor, multiplier: 0.74344023)
             
             ])
         layoutIfNeeded()
@@ -173,7 +115,7 @@ class QuoteCell: BaseCollectionViewCell {
     //
     
     @objc func didTapBookmarkButton() {
-        guard let quote = quote else { return }
+        guard let quote = quoteView.quote else { return }
         if bookmarkManager.allBookmarks.contains(quote) {
             bookmarkManager.unbookmark(quote)
             isBookmarked = false
@@ -186,7 +128,7 @@ class QuoteCell: BaseCollectionViewCell {
     }
     
     @objc func didTapInfoButton() {
-        guard let imdb_id = quote?.film.imdb_id else { return }
+        guard let imdb_id = quoteView.quote?.film.imdb_id else { return }
         delegate?.infoButtonPressed(imdb_id: imdb_id)
     }
     
