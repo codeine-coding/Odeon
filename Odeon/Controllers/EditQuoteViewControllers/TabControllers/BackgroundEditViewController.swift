@@ -93,7 +93,7 @@ class BackgroundEditViewController: UIViewController {
 extension BackgroundEditViewController: UnsplashPhotoPickerDelegate {
     func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
         guard let urlString = photos.first?.urls[.regular] else { return }
-        editQuoteController?.quoteBackgroundImage.downloadImage(from: urlString.absoluteString, completion: editQuoteController?.setupBackgroundImage)
+        editQuoteController?.quoteBackgroundImage.downloadImage(from: urlString.absoluteString, completion: editQuoteController?.quoteView.setupBackgroundImage)
     }
 
     func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
@@ -108,7 +108,7 @@ extension BackgroundEditViewController: UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
         editQuoteController?.quoteBackgroundImage.image = image
-        editQuoteController?.setupBackgroundImage()
+        editQuoteController?.quoteView.setupBackgroundImage()
         dismiss(animated: true, completion: nil)
     }
 }
