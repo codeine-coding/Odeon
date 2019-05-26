@@ -117,11 +117,20 @@ class CategoriesViewController: UIViewController {
     }
 
     private func loadCategories() {
-        CategoryService.shared.getCategories(completed: categorySuccess, failure: categoryFailure)
+        CategoryService.shared.getCategories { [weak self](categories, error) in
+            switch (categories, error) {
+            case (.some(let categories), _):
+                self?.handle(result: categories)
+            case (_, .some(let error)):
+                self?.handle(error: error)
+            default:
+                self?.serverError()
+            }
+        }
     }
 
-    private func categorySuccess() {
-        self.categories = CategoryService.shared.categories
+    private func handle(result: [Category]) {
+        self.categories = result
         if self.categories.isEmpty {
             self.showNoDataView(with: .noResults)
         } else {
@@ -129,8 +138,12 @@ class CategoriesViewController: UIViewController {
         }
     }
 
-    private func categoryFailure() {
-        showNoDataView(with: .serverError)
+    private func handle(error: Error) {
+        print(error)
+    }
+
+    private func serverError() {
+        self.showNoDataView(with: .serverError)
     }
 
     private func showNoDataView(with state: EmptyState) {

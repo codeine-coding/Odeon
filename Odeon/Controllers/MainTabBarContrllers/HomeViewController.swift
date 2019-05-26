@@ -78,22 +78,6 @@ class HomeViewController: UIViewController {
         view.addSubview(loadingIndicator)
         loadingIndicator.startAnimating()
         loadQuotes()
-
-//        QuoteService.shared.getQuotesOfTheDay { (response) in
-//            guard let response = response else { return }
-//            print("RESPONSE CODE:", response.statusCode)
-//            if response.statusCode == 200 {
-//                self.qotd = QuoteService.shared.qotd
-//                if self.qotd.isEmpty {
-//                    self.showNoDataView(with: .noResults)
-//                } else {
-//                    self.loadingIndicator.stopAnimating()
-//                }
-//            } else {
-//                self.loadingIndicator.stopAnimating()
-//                self.showNoDataView(with: .serverError)
-//            }
-//        }
         displayConstraints()
     }
     
@@ -131,11 +115,20 @@ class HomeViewController: UIViewController {
     }
 
     private func loadQuotes() {
-        QuoteService.shared.getQuotesOfTheDay(completed: quoteSuccess, failure: quotesError)
+        QuoteService.shared.getQuotesOfTheDay { [weak self] (quotes, error) in
+            switch (quotes, error) {
+            case (.some(let quotes), _):
+                self?.handle(result: quotes)
+            case (_, .some(let error)):
+                self?.handle(error: error)
+            default:
+                self?.serverError()
+            }
+        }
     }
 
-    private func quoteSuccess() {
-        self.qotd = QuoteService.shared.qotd
+    private func handle(result: [Quote]) {
+        self.qotd = result
         if self.qotd.isEmpty {
             self.showNoDataView(with: .noResults)
         } else {
@@ -143,7 +136,11 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func quotesError() {
+    private func handle(error: Error) {
+        print(error)
+    }
+
+    private func serverError() {
         self.showNoDataView(with: .serverError)
     }
 
@@ -160,12 +157,12 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return QuoteService.shared.qotd.count
+        return qotd.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
-        let quote = QuoteService.shared.qotd[indexPath.row]
+        let quote = qotd[indexPath.row]
         cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote) ? true: false
         cell.delegate = self
         cell.backgroundColor = mainColor

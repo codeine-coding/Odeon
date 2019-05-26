@@ -97,7 +97,7 @@ class SettingsViewController: UIViewController {
     func getRandomQuote() -> Quote {
         var quotes = [Quote]()
 //        QuoteService.shared.getQuotesOfTheDay {}
-        quotes = QuoteService.shared.qotd
+//        quotes = QuoteService.shared.qotd
         let randomNum = Int(arc4random_uniform(UInt32(quotes.count)))
         let suggestedQuote = quotes[randomNum]
         return suggestedQuote

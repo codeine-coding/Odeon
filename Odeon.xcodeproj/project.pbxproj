@@ -40,6 +40,7 @@
 		9F01ED962260046D009712DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED752260046D009712DE /* Extensions.swift */; };
 		9F01ED972260046D009712DE /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED762260046D009712DE /* CachedImage.swift */; };
 		9F01ED982260046D009712DE /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED772260046D009712DE /* Errors.swift */; };
+		9F31073F229A5A29001EFBB9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F31073E229A5A29001EFBB9 /* NetworkService.swift */; };
 		9F4442142282830700FC6DA0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4442132282830700FC6DA0 /* Environment.swift */; };
 		9F52E416228DC162008F4CDE /* SelectBackgroundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F52E415228DC162008F4CDE /* SelectBackgroundButton.swift */; };
 		9F6700002260315700329B03 /* DancingScript-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFF2260315700329B03 /* DancingScript-Bold.ttf */; };
@@ -133,6 +134,7 @@
 		9F01ED752260046D009712DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F01ED762260046D009712DE /* CachedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 		9F01ED772260046D009712DE /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		9F31073E229A5A29001EFBB9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		9F44420E2282437600FC6DA0 /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
 		9F44420F2282438A00FC6DA0 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
 		9F4442102282447000FC6DA0 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				9F01ED672260046D009712DE /* CategoryService.swift */,
 				9F01ED6D2260046D009712DE /* OMDBService.swift */,
 				9F01ED6E2260046D009712DE /* QuoteService.swift */,
+				9F31073E229A5A29001EFBB9 /* NetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				9F67FFF122602F3400329B03 /* BackgroundColorViewController.swift in Sources */,
 				9F01ED7B2260046D009712DE /* UnsplashImage.swift in Sources */,
 				9F01ED872260046D009712DE /* BackgroundColorCell.swift in Sources */,
+				9F31073F229A5A29001EFBB9 /* NetworkService.swift in Sources */,
 				9F67FFE322602E4700329B03 /* DiscoverViewController.swift in Sources */,
 				9F01ED822260046D009712DE /* SliderStackView.swift in Sources */,
 				9F01ED7A2260046D009712DE /* Quote.swift in Sources */,

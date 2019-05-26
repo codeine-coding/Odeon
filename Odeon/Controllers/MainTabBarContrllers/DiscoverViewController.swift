@@ -15,6 +15,8 @@ class DiscoverViewController: UIViewController {
     let cellID = "CellID"
     var destinationController: UINavigationController?
     var bookmarkManager = BookmarkedQuoteManager()
+
+    var quotes: [Quote] = []
     
     var filteredQuotes: [Quote] = [] {
         didSet {
@@ -106,15 +108,31 @@ class DiscoverViewController: UIViewController {
     }
 
     private func loadQutoes() {
-        QuoteService.shared.getQuotes(completed: quoteSuccess, failure: quotesError)
+        QuoteService.shared.getQuotes { [weak self] (quotes, error) in
+            switch (quotes, error) {
+            case (.some(let quotes), _):
+                self?.handle(result: quotes)
+            case (_, .some(let error)):
+                self?.handle(error: error)
+            default:
+                self?.serverError()
+            }
+        }
     }
 
-    private func quoteSuccess() {
-
+    private func handle(result: [Quote]) {
+        self.quotes = result
+        if self.quotes.isEmpty {
+            self.showNoDataView(with: .noResults)
+        }
     }
 
-    private func quotesError() {
-        showNoDataView(with: .serverError)
+    private func handle(error: Error) {
+        print(error)
+    }
+
+    private func serverError() {
+        self.showNoDataView(with: .serverError)
     }
 
     private func showNoDataView(with state: EmptyState) {
@@ -144,7 +162,7 @@ class DiscoverViewController: UIViewController {
     }
     
     private func filterContentForSearchText(_ searchText: String) {
-        filteredQuotes = QuoteService.shared.quotes.filter({ (quote: Quote) -> Bool in
+        filteredQuotes = quotes.filter({ (quote: Quote) -> Bool in
             let text = searchText.lowercased()
             if quote.content.lowercased().contains(text) { return true }
             if quote.author.lowercased().contains(text) { return true }
