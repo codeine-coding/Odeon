@@ -81,6 +81,16 @@ class QuoteView: UIView {
         return iv
     }()
 
+    let loadingIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.style = .whiteLarge
+        view.backgroundColor = #colorLiteral(red: 0.2379976213, green: 0.2367053628, blue: 0.2389970124, alpha: 0.8296493902)
+        view.hidesWhenStopped = true
+        view.layer.cornerRadius = 25
+        return view
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -96,6 +106,7 @@ class QuoteView: UIView {
         addSubview(quoteContentLabel)
         addSubview(quoteAuthorLabel)
         addSubview(quoteFilmTitleLabel)
+        addSubview(loadingIndicator)
         imageInitialOrigin = quoteBackgroundImage.frame.origin
         displayConstraints()
     }
@@ -115,6 +126,11 @@ class QuoteView: UIView {
             quoteContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             quoteContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             quoteContentLabel.heightAnchor.constraint(equalTo: quoteContentLabel.widthAnchor, multiplier: 0.74344023),
+
+            loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            loadingIndicator.heightAnchor.constraint(equalToConstant: 150),
+            loadingIndicator.widthAnchor.constraint(equalToConstant: 150),
 
             ])
     }
