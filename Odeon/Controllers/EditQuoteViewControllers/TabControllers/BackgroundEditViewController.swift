@@ -11,7 +11,7 @@ import UnsplashPhotoPicker
 
 class BackgroundEditViewController: UIViewController {
     
-    var editQuoteController: EditQuoteViewController?
+    weak var editQuoteController: EditQuoteViewController?
     
     let selectImageBtn: SelectBackgroundButton = {
         let btn = SelectBackgroundButton(type: .system)
@@ -93,7 +93,7 @@ class BackgroundEditViewController: UIViewController {
 extension BackgroundEditViewController: UnsplashPhotoPickerDelegate {
     func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
         guard let urlString = photos.first?.urls[.regular] else { return }
-        editQuoteController?.quoteBackgroundImage.downloadImage(from: urlString.absoluteString, completion: editQuoteController?.quoteView.setupBackgroundImage)
+        editQuoteController?.quoteView.quoteBackgroundImage.downloadImage(from: urlString.absoluteString,loadingIndicator: editQuoteController?.quoteView.loadingIndicator, completion: editQuoteController?.quoteView.setupBackgroundImage)
     }
 
     func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
@@ -107,7 +107,7 @@ extension BackgroundEditViewController: UnsplashPhotoPickerDelegate {
 extension BackgroundEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.originalImage] as? UIImage else { return }
-        editQuoteController?.quoteBackgroundImage.image = image
+        editQuoteController?.quoteView.quoteBackgroundImage.image = image
         editQuoteController?.quoteView.setupBackgroundImage()
         dismiss(animated: true, completion: nil)
     }

@@ -14,8 +14,6 @@ class EditQuoteViewController: UIViewController {
 
     let quoteView = QuoteView()
 
-    lazy var quoteBackgroundImage = self.quoteView.quoteBackgroundImage
-
     let editView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
@@ -30,7 +28,6 @@ class EditQuoteViewController: UIViewController {
         view.isHidden = true
         return view
     }()
-    
     
     let editBarController = EditViewTabBarController()
     
@@ -85,8 +82,8 @@ class EditQuoteViewController: UIViewController {
     
     func updateQuoteBackground() {
         if let bgColor = quoteBkgdColor {
-            if quoteBackgroundImage.image != nil {
-                quoteBackgroundImage.image = UIImage(named: "")
+            if quoteView.quoteBackgroundImage.image != nil {
+                quoteView.quoteBackgroundImage.image = UIImage(named: "")
             }
             editView.backgroundColor = bgColor
         } else {
