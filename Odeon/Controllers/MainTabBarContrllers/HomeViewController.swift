@@ -10,7 +10,6 @@ import UIKit
 import GoogleMobileAds
 
 class HomeViewController: QuoteListViewController {
-    var bookmarkManager = BookmarkedQuoteManager()
 
     override var quotes: [Quote] {
         didSet {
@@ -157,7 +156,7 @@ class HomeViewController: QuoteListViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
         let quote = quotes[indexPath.row]
-        cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote) ? true: false
+        cell.isBookmarked = BookmarkedQuoteManager.shared.allBookmarks.contains(quote) ? true: false
         cell.delegate = self
         cell.backgroundColor = .primary
         cell.quoteView.quote = quote

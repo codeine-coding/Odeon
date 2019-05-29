@@ -22,7 +22,6 @@ class QuoteCell: BaseCollectionViewCell {
     let quoteView = QuoteView()
     var delegate: QuoteCellDelegate?
     var bookmarkController: BookmarksViewController?
-    var bookmarkManager = BookmarkedQuoteManager()
     
     //
     // MARK - Property Observers
@@ -116,6 +115,7 @@ class QuoteCell: BaseCollectionViewCell {
     
     @objc func didTapBookmarkButton() {
         guard let quote = quoteView.quote else { return }
+        let bookmarkManager = BookmarkedQuoteManager.shared
         if bookmarkManager.allBookmarks.contains(quote) {
             bookmarkManager.unbookmark(quote)
             isBookmarked = false

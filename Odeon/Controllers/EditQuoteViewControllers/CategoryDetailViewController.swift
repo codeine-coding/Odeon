@@ -32,8 +32,6 @@ class CategoryDetailViewController: QuoteListViewController {
 
     var headerView = CategoryHeaderView()
 
-    var bookmarkManager = BookmarkedQuoteManager()
-
     // Variable Initialization Closures
     lazy var bannerView: GADBannerView = {
         let view = GADBannerView(adSize: kGADAdSizeLargeBanner)
@@ -112,7 +110,7 @@ class CategoryDetailViewController: QuoteListViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
         let quote = category?.quotes?[indexPath.row]
         cell.quoteView.quote = quote
-        cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote!) ? true: false
+        cell.isBookmarked = BookmarkedQuoteManager.shared.allBookmarks.contains(quote!) ? true: false
         cell.delegate = self
         cell.contentView.backgroundColor = UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
         return cell

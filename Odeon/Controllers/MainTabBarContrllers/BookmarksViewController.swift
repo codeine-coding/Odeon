@@ -11,8 +11,6 @@ import GoogleMobileAds
 
 class BookmarksViewController: QuoteListViewController {
 
-    var bookmarkManager = BookmarkedQuoteManager()
-
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -56,12 +54,12 @@ class BookmarksViewController: QuoteListViewController {
     // MARK - CollectionView Methods
     //
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bookmarkManager.bookmarkQuoteCount
+        return BookmarkedQuoteManager.shared.bookmarkQuoteCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
-        cell.quoteView.quote = bookmarkManager.allBookmarks[indexPath.row]
+        cell.quoteView.quote = BookmarkedQuoteManager.shared.allBookmarks[indexPath.row]
         cell.isBookmarked = true
         cell.delegate = self
         cell.bookmarkController = self
@@ -71,7 +69,7 @@ class BookmarksViewController: QuoteListViewController {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationController = EditQuoteViewController()
-        destinationController.quoteView.quote = bookmarkManager.allBookmarks[indexPath.row]
+        destinationController.quoteView.quote = BookmarkedQuoteManager.shared.allBookmarks[indexPath.row]
         present(UINavigationController(rootViewController: destinationController), animated: true, completion: nil)
     }
 }

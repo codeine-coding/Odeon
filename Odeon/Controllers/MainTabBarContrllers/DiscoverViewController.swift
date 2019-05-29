@@ -10,7 +10,6 @@ import UIKit
 import GoogleMobileAds
 
 class DiscoverViewController: QuoteListViewController {
-    var bookmarkManager = BookmarkedQuoteManager()
     
     var filteredQuotes: [Quote] = [] {
         didSet {
@@ -194,7 +193,7 @@ class DiscoverViewController: QuoteListViewController {
         let quote: Quote
         if isFiltering() {
             quote = filteredQuotes[indexPath.row]
-            cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote) ? true: false
+            cell.isBookmarked = BookmarkedQuoteManager.shared.allBookmarks.contains(quote) ? true: false
             cell.quoteView.quote = quote
             cell.backgroundColor = #colorLiteral(red: 0.09803921569, green: 0.6549019608, blue: 0.7529411765, alpha: 1)
             cell.delegate = self
