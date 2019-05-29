@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-class CategoryDetailViewController: UIViewController {
+class CategoryDetailViewController: QuoteListViewController {
 
     // Property Observers
     var category: Category? {
@@ -29,12 +29,6 @@ class CategoryDetailViewController: UIViewController {
     var red: CGFloat!
     var green: CGFloat!
     var blue: CGFloat!
-
-    var interstitial: GADInterstitial!
-
-    let cellID = "CellID"
-
-    var destinationController: UINavigationController?
 
     var headerView = CategoryHeaderView()
 
@@ -69,12 +63,10 @@ class CategoryDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interstitial = createAndLoadInterstitial()
         collectionView.register(QuoteCell.self, forCellWithReuseIdentifier: cellID)
-        setupView()
     }
 
-    func setupView() {
+    override func setupView() {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.tintColor = .white
@@ -82,10 +74,10 @@ class CategoryDetailViewController: UIViewController {
         view.addSubview(headerView)
         view.addSubview(collectionView)
         view.addSubview(bannerView)
-        displayConstraints()
+        super.setupView()
     }
 
-    func displayConstraints() {
+    override func displayConstraints() {
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             headerView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -109,17 +101,16 @@ class CategoryDetailViewController: UIViewController {
         }
     }
 
-}
-
-extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //
+    // MARK - CollectionView Methods
+    //
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return category?.quotes?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
         let quote = category?.quotes?[indexPath.row]
-        //        let quote = sampleQuotes[indexPath.row]
         cell.quoteView.quote = quote
         cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote!) ? true: false
         cell.delegate = self
@@ -127,62 +118,10 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (collectionView.frame.width)
-        return CGSize(width: cellWidth, height: cellWidth)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
-    }
-
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationController = EditQuoteViewController()
         destinationController.quoteView.quote = category?.quotes?[indexPath.row]
         present(UINavigationController(rootViewController: destinationController), animated: true, completion: nil)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 108, right: 0)
-    }
-
-}
-
-extension CategoryDetailViewController: QuoteCellDelegate {
-
-    func infoButtonPressed(imdb_id: String) {
-        Environment.InfoButtonClickedCount += 1
-        let quoteDetailView = QuoteDetailController()
-        OMDBService.instance.getFilmInfo(with: imdb_id) {
-            quoteDetailView.film = OMDBService.instance.filmOMDB
-        }
-        destinationController = UINavigationController(rootViewController: quoteDetailView)
-        if Environment.InfoButtonClickedCount % 5 == 0 {
-            if interstitial.isReady {
-                print("shwoing ad")
-                interstitial.present(fromRootViewController: self)
-            } else {
-                print("Ad wasn't ready")
-            }
-        } else {
-            present(destinationController!, animated: true, completion: nil)
-        }
-    }
-
-
-}
-
-extension CategoryDetailViewController: GADInterstitialDelegate {
-    func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: Environment.InterstitialAd)
-        interstitial.delegate = self
-        interstitial.load(TestDeviceRequest)
-        return interstitial
-    }
-
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        interstitial = createAndLoadInterstitial()
-        present(destinationController!, animated: true, completion: nil)
     }
 
 }

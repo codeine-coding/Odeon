@@ -9,11 +9,8 @@
 import UIKit
 import GoogleMobileAds
 
-class BookmarksViewController: UIViewController {
+class BookmarksViewController: QuoteListViewController {
 
-    var interstitial: GADInterstitial!
-    let cellID = "CellID"
-    var destinationController: UINavigationController?
     var bookmarkManager = BookmarkedQuoteManager()
 
     lazy var collectionView: UICollectionView = {
@@ -37,17 +34,16 @@ class BookmarksViewController: UIViewController {
         super.viewDidLoad()
         self.collectionView.reloadData()
         collectionView.register(QuoteCell.self, forCellWithReuseIdentifier: cellID)
-        setupView()
     }
 
-    private func setupView() {
+    override func setupView() {
         navigationItem.title = "Bookmarks"
         view.backgroundColor = .white
         view.addSubview(collectionView)
         displayConstraints()
     }
 
-    private func displayConstraints() {
+    override func displayConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
@@ -56,14 +52,14 @@ class BookmarksViewController: UIViewController {
             ])
     }
 
-}
-
-extension BookmarksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    //
+    // MARK - CollectionView Methods
+    //
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookmarkManager.bookmarkQuoteCount
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
         cell.quoteView.quote = bookmarkManager.allBookmarks[indexPath.row]
         cell.isBookmarked = true
@@ -73,54 +69,9 @@ extension BookmarksViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellWidth = (collectionView.frame.width)
-        return CGSize(width: cellWidth, height: cellWidth)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
-    }
-
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let destinationController = EditQuoteViewController()
         destinationController.quoteView.quote = bookmarkManager.allBookmarks[indexPath.row]
         present(UINavigationController(rootViewController: destinationController), animated: true, completion: nil)
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 108, right: 0)
-    }
-
-}
-
-extension BookmarksViewController: QuoteCellDelegate {
-
-    func infoButtonPressed(imdb_id: String) {
-        Environment.InfoButtonClickedCount += 1
-        let quoteDetailView = QuoteDetailController()
-        OMDBService.instance.getFilmInfo(with: imdb_id) {
-            quoteDetailView.film = OMDBService.instance.filmOMDB
-        }
-        destinationController = UINavigationController(rootViewController: quoteDetailView)
-        if Environment.InfoButtonClickedCount % 5 == 0 {
-            if interstitial.isReady {
-                print("shwoing ad")
-                interstitial.present(fromRootViewController: self)
-            } else {
-                print("Ad wasn't ready")
-            }
-        } else {
-            present(destinationController!, animated: true, completion: nil)
-        }
-    }
-}
-
-extension BookmarksViewController: HasInterstitalAd {
-    
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        interstitial = createAndLoadInterstitial()
-        present(destinationController!, animated: true, completion: nil)
-    }
-
 }

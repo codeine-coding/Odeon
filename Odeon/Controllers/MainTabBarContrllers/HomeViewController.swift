@@ -9,18 +9,13 @@
 import UIKit
 import GoogleMobileAds
 
-class HomeViewController: UIViewController {
-    var interstitial: GADInterstitial!
-    let cellID = "CellID"
-    var destinationController: UINavigationController?
-    var InfoBtnClickedCount: Int = 0
-    var mainColor: UIColor = #colorLiteral(red: 0.4941176471, green: 0.4078431373, blue: 0.7921568627, alpha: 1)
+class HomeViewController: QuoteListViewController {
     var bookmarkManager = BookmarkedQuoteManager()
-    
-    var qotd: [Quote] = [] {
+
+    override var quotes: [Quote] {
         didSet {
             self.collectionView.reloadData()
-            self.pageControl.numberOfPages = qotd.count
+            self.pageControl.numberOfPages = self.quotes.count
         }
     }
 
@@ -46,7 +41,7 @@ class HomeViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = mainColor
+        collectionView.backgroundColor = .primary
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
@@ -66,12 +61,10 @@ class HomeViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        interstitial = createAndLoadInterstitial()
         collectionView.register(QuoteCell.self, forCellWithReuseIdentifier: cellID)
-        setupView()
     }
     
-    private func setupView() {
+     override func setupView() {
         navigationItem.title = "Quotes of The Day"
         view.addSubview(collectionView)
         view.addSubview(pageControl)
@@ -81,7 +74,7 @@ class HomeViewController: UIViewController {
         displayConstraints()
     }
     
-    private func displayConstraints() {
+     override func displayConstraints() {
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -128,8 +121,8 @@ class HomeViewController: UIViewController {
     }
 
     private func handle(result: [Quote]) {
-        self.qotd = result
-        if self.qotd.isEmpty {
+        self.quotes = result
+        if self.quotes.isEmpty {
             self.showNoDataView(with: .noResults)
         } else {
             self.loadingIndicator.stopAnimating()
@@ -153,66 +146,25 @@ class HomeViewController: UIViewController {
         
         pageControl.currentPage = Int(x / view.frame.width)
     }
-}
 
-extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return qotd.count
+    //
+    // MARK - CollectionView Methods
+    //
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return quotes.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! QuoteCell
-        let quote = qotd[indexPath.row]
+        let quote = quotes[indexPath.row]
         cell.isBookmarked = bookmarkManager.allBookmarks.contains(quote) ? true: false
         cell.delegate = self
-        cell.backgroundColor = mainColor
+        cell.backgroundColor = .primary
         cell.quoteView.quote = quote
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.width)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
-    
-}
-
-extension HomeViewController: QuoteCellDelegate {
-    
-    func infoButtonPressed(imdb_id: String) {
-        InfoBtnClickedCount += 1
-        let quoteDetailView = QuoteDetailController()
-        OMDBService.instance.getFilmInfo(with: imdb_id) {
-            quoteDetailView.film = OMDBService.instance.filmOMDB
-        }
-        destinationController = UINavigationController(rootViewController: quoteDetailView)
-        if InfoBtnClickedCount % 5 == 0 {
-            if interstitial.isReady {
-                print("shwoing ad")
-                interstitial.present(fromRootViewController: self)
-            } else {
-                print("Ad wasn't ready")
-            }
-        } else {
-            present(destinationController!, animated: true, completion: nil)
-        }
-    }
-    
-    
-}
-
-extension HomeViewController: HasInterstitalAd {
-    
-    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
-        interstitial = createAndLoadInterstitial()
-        present(destinationController!, animated: true, completion: nil)
-    }
-
 }
