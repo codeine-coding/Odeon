@@ -9,8 +9,12 @@
 import Foundation
 
 class BookmarkedQuoteManager {
+    static let shared = BookmarkedQuoteManager()
+
     var bookmarkQuoteCount: Int { return RealmManager.shared.getBookmarkeQuotes().count }
     var allBookmarks: [Quote] { return RealmManager.shared.convertAllBookmarkedQuotesToQuote() }
+
+    private init() {}
     
     func convert(_ bookmark: BookmarkedQuote) -> Quote {
         return RealmManager.shared.convertToQuote(bookmark)
