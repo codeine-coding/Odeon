@@ -29,8 +29,7 @@
 		9F01ED882260046D009712DE /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED622260046D009712DE /* CategoryHeaderView.swift */; };
 		9F01ED8A2260046D009712DE /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED652260046D009712DE /* BaseCollectionViewCell.swift */; };
 		9F01ED8B2260046D009712DE /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED672260046D009712DE /* CategoryService.swift */; };
-		9F01ED8D2260046D009712DE /* ShareToInstagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6A2260046D009712DE /* ShareToInstagram.swift */; };
-		9F01ED8E2260046D009712DE /* InstagramManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6B2260046D009712DE /* InstagramManager.swift */; };
+		9F01ED8D2260046D009712DE /* InstagramManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6A2260046D009712DE /* InstagramManager.swift */; };
 		9F01ED902260046D009712DE /* OMDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6D2260046D009712DE /* OMDBService.swift */; };
 		9F01ED912260046D009712DE /* QuoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED6E2260046D009712DE /* QuoteService.swift */; };
 		9F01ED922260046D009712DE /* CategorySelectionPushTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED702260046D009712DE /* CategorySelectionPushTransition.swift */; };
@@ -124,8 +123,7 @@
 		9F01ED622260046D009712DE /* CategoryHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 		9F01ED652260046D009712DE /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		9F01ED672260046D009712DE /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
-		9F01ED6A2260046D009712DE /* ShareToInstagram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareToInstagram.swift; sourceTree = "<group>"; };
-		9F01ED6B2260046D009712DE /* InstagramManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramManager.swift; sourceTree = "<group>"; };
+		9F01ED6A2260046D009712DE /* InstagramManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstagramManager.swift; sourceTree = "<group>"; };
 		9F01ED6D2260046D009712DE /* OMDBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OMDBService.swift; sourceTree = "<group>"; };
 		9F01ED6E2260046D009712DE /* QuoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuoteService.swift; sourceTree = "<group>"; };
 		9F01ED702260046D009712DE /* CategorySelectionPushTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorySelectionPushTransition.swift; sourceTree = "<group>"; };
@@ -326,8 +324,7 @@
 		9F01ED692260046D009712DE /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				9F01ED6A2260046D009712DE /* ShareToInstagram.swift */,
-				9F01ED6B2260046D009712DE /* InstagramManager.swift */,
+				9F01ED6A2260046D009712DE /* InstagramManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -796,13 +793,12 @@
 				9F01ED7F2260046D009712DE /* RealmManager.swift in Sources */,
 				9F01ED792260046D009712DE /* FilmOMDB.swift in Sources */,
 				9F01ED922260046D009712DE /* CategorySelectionPushTransition.swift in Sources */,
-				9F01ED8E2260046D009712DE /* InstagramManager.swift in Sources */,
 				9F67FFDD22602DC800329B03 /* MainTabBarController.swift in Sources */,
 				9F67FFE122602E3B00329B03 /* HomeViewController.swift in Sources */,
 				9F01ED962260046D009712DE /* Extensions.swift in Sources */,
 				9F01ED882260046D009712DE /* CategoryHeaderView.swift in Sources */,
 				9F01ED7C2260046D009712DE /* Category.swift in Sources */,
-				9F01ED8D2260046D009712DE /* ShareToInstagram.swift in Sources */,
+				9F01ED8D2260046D009712DE /* InstagramManager.swift in Sources */,
 				9F01ED982260046D009712DE /* Errors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
