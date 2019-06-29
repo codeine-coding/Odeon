@@ -75,6 +75,7 @@
 		9FA3740B229E7A8900EDED26 /* QuoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3740A229E7A8900EDED26 /* QuoteListViewController.swift */; };
 		9FB8B1D02283532200AD393E /* HasInterstial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8B1CF2283532200AD393E /* HasInterstial.swift */; };
 		9FCA0F792279462F00AC3CBF /* OdeonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA0F782279462F00AC3CBF /* OdeonTests.swift */; };
+		9FE82E9622C6FB8400864EFD /* QuoteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE82E9522C6FB8400864EFD /* QuoteTest.swift */; };
 		9FFE088D2291BC12002FF7CE /* QuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE088C2291BC12002FF7CE /* QuoteView.swift */; };
 		F7839F088A023A0AD914CACF /* Pods_Odeon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B3B3D732680336E8AE82D16 /* Pods_Odeon.framework */; };
 /* End PBXBuildFile section */
@@ -177,6 +178,7 @@
 		9FCA0F762279462F00AC3CBF /* OdeonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdeonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCA0F782279462F00AC3CBF /* OdeonTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdeonTests.swift; sourceTree = "<group>"; };
 		9FCA0F7A2279462F00AC3CBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9FE82E9522C6FB8400864EFD /* QuoteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteTest.swift; sourceTree = "<group>"; };
 		9FFE088C2291BC12002FF7CE /* QuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteView.swift; sourceTree = "<group>"; };
 		D3E2CAA76919DD40F3688A41 /* Pods-Odeon.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odeon.beta.xcconfig"; path = "Pods/Target Support Files/Pods-Odeon/Pods-Odeon.beta.xcconfig"; sourceTree = "<group>"; };
 		D467B19D31A9A3326989B24D /* Pods-Odeon.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Odeon.production.xcconfig"; path = "Pods/Target Support Files/Pods-Odeon/Pods-Odeon.production.xcconfig"; sourceTree = "<group>"; };
@@ -531,10 +533,19 @@
 		9FCA0F772279462F00AC3CBF /* OdeonTests */ = {
 			isa = PBXGroup;
 			children = (
+				9FE82E9422C6FB6100864EFD /* ModelTests */,
 				9FCA0F782279462F00AC3CBF /* OdeonTests.swift */,
 				9FCA0F7A2279462F00AC3CBF /* Info.plist */,
 			);
 			path = OdeonTests;
+			sourceTree = "<group>";
+		};
+		9FE82E9422C6FB6100864EFD /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				9FE82E9522C6FB8400864EFD /* QuoteTest.swift */,
+			);
+			path = ModelTests;
 			sourceTree = "<group>";
 		};
 		DA1CC86126E56EAF69DEF5F2 /* Frameworks */ = {
@@ -816,6 +827,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9FE82E9622C6FB8400864EFD /* QuoteTest.swift in Sources */,
 				9FCA0F792279462F00AC3CBF /* OdeonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
