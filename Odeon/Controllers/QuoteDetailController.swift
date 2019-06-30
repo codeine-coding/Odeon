@@ -86,6 +86,7 @@ class QuoteDetailController: UIViewController {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         iv.image = UIImage(named: "")
+        iv.accessibilityLabel = "posterImage"
         return iv
     }()
     
