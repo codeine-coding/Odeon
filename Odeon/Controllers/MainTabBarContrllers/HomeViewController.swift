@@ -160,6 +160,7 @@ class HomeViewController: QuoteListViewController {
         cell.delegate = self
         cell.backgroundColor = .primary
         cell.quoteView.quote = quote
+        cell.accessibilityLabel = String(indexPath.row)
         return cell
     }
 
