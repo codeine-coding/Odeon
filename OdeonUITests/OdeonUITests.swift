@@ -28,31 +28,7 @@ class OdeonUITests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testHomeVCCellSwiping() {
-
-        let collectionViewsQuery = XCUIApplication().collectionViews
-        XCTAssertTrue(collectionViewsQuery.cells["0"].exists)
-        collectionViewsQuery.cells["0"].swipeLeft()
-        XCTAssertTrue(collectionViewsQuery.cells["1"].exists)
-        collectionViewsQuery.cells["1"].swipeLeft()
-        XCTAssertTrue(collectionViewsQuery.cells["2"].exists)
-    }
-
-    func testHomeVC_FirstCellInfoButtonPressed_ShowsQuoteFilmInfo() {
-        let moreInfo = app.collectionViews.buttons["More Info"]
-        XCTAssertTrue(moreInfo.exists)
-        moreInfo.tap()
-
-        let poster = app.images["posterImage"]
-        XCTAssertTrue(poster.exists)
-        XCTAssertFalse(moreInfo.exists)
-
-        app.navigationBars["Odeon.QuoteDetail"].buttons["Done"].tap()
-        XCTAssertTrue(moreInfo.exists)
-    }
-
-    func testExample() {
+    func testScreenShots() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
 

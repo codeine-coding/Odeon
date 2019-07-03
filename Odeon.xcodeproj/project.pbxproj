@@ -39,6 +39,7 @@
 		9F01ED962260046D009712DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED752260046D009712DE /* Extensions.swift */; };
 		9F01ED972260046D009712DE /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED762260046D009712DE /* CachedImage.swift */; };
 		9F01ED982260046D009712DE /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED772260046D009712DE /* Errors.swift */; };
+		9F0D8C8E22CC52CE0096F311 /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D8C8D22CC52CE0096F311 /* HomeViewControllerTests.swift */; };
 		9F31073F229A5A29001EFBB9 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F31073E229A5A29001EFBB9 /* NetworkService.swift */; };
 		9F4442142282830700FC6DA0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4442132282830700FC6DA0 /* Environment.swift */; };
 		9F52E416228DC162008F4CDE /* SelectBackgroundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F52E415228DC162008F4CDE /* SelectBackgroundButton.swift */; };
@@ -134,6 +135,7 @@
 		9F01ED752260046D009712DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F01ED762260046D009712DE /* CachedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 		9F01ED772260046D009712DE /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		9F0D8C8D22CC52CE0096F311 /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
 		9F31073E229A5A29001EFBB9 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		9F44420E2282437600FC6DA0 /* Beta.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Beta.xcconfig; sourceTree = "<group>"; };
 		9F44420F2282438A00FC6DA0 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
@@ -500,6 +502,14 @@
 			path = Monoton;
 			sourceTree = "<group>";
 		};
+		9F0D8C8C22CC52A60096F311 /* ControllersTests */ = {
+			isa = PBXGroup;
+			children = (
+				9F0D8C8D22CC52CE0096F311 /* HomeViewControllerTests.swift */,
+			);
+			path = ControllersTests;
+			sourceTree = "<group>";
+		};
 		9F44421122827CDD00FC6DA0 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
@@ -515,6 +525,7 @@
 		9F67FFCA227E9B2800D85A36 /* OdeonUITests */ = {
 			isa = PBXGroup;
 			children = (
+				9F0D8C8C22CC52A60096F311 /* ControllersTests */,
 				9F67FFD3227F577C00D85A36 /* SnapshotHelper.swift */,
 				9F67FFCB227E9B2800D85A36 /* OdeonUITests.swift */,
 				9F67FFCD227E9B2800D85A36 /* Info.plist */,
@@ -819,6 +830,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F67FFCC227E9B2800D85A36 /* OdeonUITests.swift in Sources */,
+				9F0D8C8E22CC52CE0096F311 /* HomeViewControllerTests.swift in Sources */,
 				9F67FFD4227F578E00D85A36 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
