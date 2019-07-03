@@ -42,6 +42,7 @@ class HomeViewController: QuoteListViewController {
         collectionView.isPagingEnabled = true
         collectionView.backgroundColor = .primary
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.accessibilityLabel = "QOTD Collection View"
         return collectionView
     }()
     
