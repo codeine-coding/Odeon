@@ -47,4 +47,20 @@ class InstagramManager: NSObject, UIDocumentInteractionControllerDelegate {
         documentInteractionController.annotation = ["InstagramCaption": instagramCaption]
         documentInteractionController.presentOpenInMenu(from: view.frame, in: view, animated: true)
     }
+
+    func copyTextToInstagram(_ quote: Quote? ) {
+        guard let quote = quote else { return }
+        let textCaption = """
+        \"\(quote.content)\"
+        - \(quote.author)
+        \(quote.film.title) [\(quote.film.type.title)]
+        .
+        .
+        .
+        .
+        ——————————————————
+        #motivationalquotes #motivation #motivationquotes #life #lifequotes #photography #love #photooftheday #beautiful #behappy #succes #succesquotes #inspiration #inspirationalquotes #inspiringquotes #deep #deepquotes #moviequotes #successfulmindset #successday #successhabits #successmindset #successful #successstories #successmotivation #successfulliving
+        """
+        UIPasteboard.general.string = textCaption
+    }
 }

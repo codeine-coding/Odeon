@@ -112,7 +112,7 @@ class EditQuoteViewController: UIViewController {
         if UIApplication.shared.canOpenURL(instagramURL! as URL) {
             let image = getImageFromView()
             InstagramManager.sharedManager.postImageToInstagramWithCaption(imageInstagram: image, instagramCaption: "My Photo", view: self.view)
-            copyTextToInstagram(quoteView.quote)
+            InstagramManager.sharedManager.copyTextToInstagram(quoteView.quote)
         } else {
             let NoIGAlert = UIAlertController(title: InstagramManager.kAlertViewTitle, message: InstagramManager.kAlertViewMessage, preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -128,22 +128,6 @@ class EditQuoteViewController: UIViewController {
         
         present(activityViewController, animated: true, completion: nil)
         
-    }
-    
-    func copyTextToInstagram(_ quote: Quote? ) {
-        guard let quote = quote else { return }
-        let textCaption = """
-        \"\(quote.content)\"
-        - \(quote.author)
-        \(quote.film.title) [\(quote.film.type.title)]
-        .
-        .
-        .
-        .
-        ——————————————————
-        #motivationalquotes #motivation #motivationquotes #life #lifequotes #photography #love #photooftheday #beautiful #behappy #succes #succesquotes #inspiration #inspirationalquotes #inspiringquotes #deep #deepquotes #moviequotes #successfulmindset #successday #successhabits #successmindset #successful #successstories #successmotivation #successfulliving
-        """
-        UIPasteboard.general.string = textCaption
     }
     
     func getImageFromView() -> UIImage {
