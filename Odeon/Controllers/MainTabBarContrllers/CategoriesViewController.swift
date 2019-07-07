@@ -117,14 +117,12 @@ class CategoriesViewController: UIViewController {
     }
 
     private func loadCategories() {
-        CategoryService.shared.getCategories { [weak self](categories, error) in
-            switch (categories, error) {
-            case (.some(let categories), _):
+        CategoryService.shared.getCategories { [weak self] (result) in
+            switch result {
+            case .success(let categories):
                 self?.handle(result: categories)
-            case (_, .some(let error)):
+            case .failure(let error):
                 self?.handle(error: error)
-            default:
-                self?.serverError()
             }
         }
     }
@@ -139,7 +137,12 @@ class CategoriesViewController: UIViewController {
     }
 
     private func handle(error: Error) {
-        print(error)
+        switch error {
+        case NetworkError.serverError:
+            self.serverError()
+        default:
+            print(error.localizedDescription)
+        }
     }
 
     private func serverError() {

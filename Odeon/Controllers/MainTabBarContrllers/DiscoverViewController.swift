@@ -99,14 +99,12 @@ class DiscoverViewController: QuoteListViewController {
     }
 
     private func loadQutoes() {
-        QuoteService.shared.getQuotes { [weak self] (quotes, error) in
-            switch (quotes, error) {
-            case (.some(let quotes), _):
+        QuoteService.shared.getQuotes { [weak self] (result) in
+            switch result {
+            case (.success(let quotes)):
                 self?.handle(result: quotes)
-            case (_, .some(let error)):
+            case (.failure(let error)):
                 self?.handle(error: error)
-            default:
-                self?.serverError()
             }
         }
     }
@@ -119,7 +117,12 @@ class DiscoverViewController: QuoteListViewController {
     }
 
     private func handle(error: Error) {
-        print(error)
+        switch error {
+        case NetworkError.serverError:
+            self.serverError()
+        default:
+            print(error.localizedDescription)
+        }
     }
 
     private func serverError() {

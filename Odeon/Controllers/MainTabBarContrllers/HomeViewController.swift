@@ -108,14 +108,12 @@ class HomeViewController: QuoteListViewController {
     }
 
     private func loadQuotes() {
-        QuoteService.shared.getQuotesOfTheDay { [weak self] (quotes, error) in
-            switch (quotes, error) {
-            case (.some(let quotes), _):
+        QuoteService.shared.getQuotesOfTheDay { [weak self] (result) in
+            switch result {
+            case (.success(let quotes)):
                 self?.handle(result: quotes)
-            case (_, .some(let error)):
+            case (.failure(let error)):
                 self?.handle(error: error)
-            default:
-                self?.serverError()
             }
         }
     }
@@ -130,7 +128,12 @@ class HomeViewController: QuoteListViewController {
     }
 
     private func handle(error: Error) {
-        print(error)
+        switch error {
+        case NetworkError.serverError:
+            self.serverError()
+        default:
+            print(error.localizedDescription)
+        }
     }
 
     private func serverError() {

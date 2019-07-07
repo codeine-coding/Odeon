@@ -9,7 +9,7 @@
 import Foundation
 
 class CategoryService {
-    typealias CompletionHandler = ([Category]?, Error?) -> Void
+    typealias CompletionHandler = (Result<[Category], Error>) -> Void
 
     static let shared = CategoryService()
 

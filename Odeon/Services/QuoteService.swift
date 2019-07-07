@@ -9,7 +9,7 @@
 import Foundation
 
 class QuoteService {
-    typealias CompletionHandler = ([Quote]?, Error?) -> Void
+    typealias CompletionHandler = (Result<[Quote], Error>) -> Void
 
     static let shared = QuoteService()
 
