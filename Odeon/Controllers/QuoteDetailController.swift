@@ -101,6 +101,7 @@ class QuoteDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.accessibilityIdentifier = "VIEW_ID_QUOTE_DETAIL_VIEW"
         setupView()
     }
     
