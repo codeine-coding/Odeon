@@ -11,6 +11,10 @@ import XCTest
 
 class HomeViewControllerTests: XCTestCase {
     var app: XCUIApplication!
+    
+//    var isDisplayingQuoteDetail: Bool {
+//        return otherElements["VIEW_ID_QUOTE_DETAIL_VIEW"].exists
+//    }
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -38,17 +42,21 @@ class HomeViewControllerTests: XCTestCase {
         let moreInfo = app.collectionViews.buttons["More Info"]
         XCTAssertTrue(moreInfo.exists)
         moreInfo.tap()
-
-        let poster = app.images["posterImage"]
-        XCTAssertTrue(poster.exists)
-        XCTAssertFalse(moreInfo.exists)
-
-        app.navigationBars["Odeon.QuoteDetail"].buttons["Done"].tap()
+        XCTAssertTrue(app.isDisplayingQuoteDetail)
+    }
+    
+    func testQuoteDetailVC_Dismisses_WhenDoneButtonPressed() {
+        let moreInfo = app.collectionViews.buttons["More Info"]
         XCTAssertTrue(moreInfo.exists)
+        moreInfo.tap()
+        XCTAssertTrue(app.isDisplayingQuoteDetail)
+        
+        app.buttons["Done"].tap()
+        XCTAssertFalse(app.isDisplayingQuoteDetail)
     }
 
     func testCellsSwipable() {
-        let collectionViewsQuery = app.collectionViews
+        let collectionViewsQuery = app.collectionViews.cells
         XCTAssertTrue(collectionViewsQuery.cells["0"].exists)
         collectionViewsQuery.cells["0"].swipeLeft()
         XCTAssertTrue(collectionViewsQuery.cells["1"].exists)
@@ -58,4 +66,10 @@ class HomeViewControllerTests: XCTestCase {
 
     // TODO: Test Bookmarking
 
+}
+
+extension XCUIApplication {
+    var isDisplayingQuoteDetail: Bool {
+        return otherElements["VIEW_ID_QUOTE_DETAIL_VIEW"].exists
+    }
 }
