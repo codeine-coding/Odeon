@@ -38,31 +38,6 @@ class NetworkService {
 
     private init() {}
 
-    func get<T:Codable>(url: URL, completion: @escaping (T?, Error?) -> Void) { // -> URLSessionTask where T: Decodable {
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            guard
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200
-            else {
-                completion(nil, nil)
-                return
-            }
-
-            do {
-                let result = try JSONDecoder().decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completion(result, nil)
-                }
-            } catch let error {
-                DispatchQueue.main.async {
-                    completion(nil, error)
-                }
-            }
-        }
-        task.resume()
-    }
-
     func get<T:Codable>(url: URL, completion: @escaping (Result<T, Error>) -> Void) { // -> URLSessionTask where T: Decodable {
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
 
