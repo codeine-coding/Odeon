@@ -68,7 +68,7 @@ class HomeViewControllerTests: XCTestCase {
 
 }
 
-extension XCUIApplication {
+private extension XCUIApplication {
     var isDisplayingQuoteDetail: Bool {
         return otherElements["VIEW_ID_QUOTE_DETAIL_VIEW"].exists
     }

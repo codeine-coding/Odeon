@@ -48,6 +48,7 @@ class DiscoverViewController: QuoteListViewController {
         let sc = UISearchController(searchResultsController: nil)
         sc.obscuresBackgroundDuringPresentation = false
         sc.searchBar.placeholder = "Search quotes by content, author, movie title & film type"
+        sc.searchBar.accessibilityLabel = "Search"
         sc.searchResultsUpdater = self
         sc.searchBar.sizeToFit()
         return sc

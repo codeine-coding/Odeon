@@ -75,6 +75,7 @@ class NoDataView: UIView {
     // MARK: - Setup Views
     
     private func setupView() {
+        accessibilityIdentifier = "No Data View"
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white
         addSubview(titleLabel)
