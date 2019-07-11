@@ -56,7 +56,7 @@ class HomeViewControllerTests: XCTestCase {
     }
 
     func testCellsSwipable() {
-        let collectionViewsQuery = app.collectionViews.cells
+        let collectionViewsQuery = app.collectionViews
         XCTAssertTrue(collectionViewsQuery.cells["0"].exists)
         collectionViewsQuery.cells["0"].swipeLeft()
         XCTAssertTrue(collectionViewsQuery.cells["1"].exists)
