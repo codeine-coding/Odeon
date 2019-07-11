@@ -33,7 +33,7 @@ enum NetworkError: Error {
     }
 }
 
-class NetworkService {
+final class NetworkService {
     static let shared = NetworkService()
 
     private init() {}
