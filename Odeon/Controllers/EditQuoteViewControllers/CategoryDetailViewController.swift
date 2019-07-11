@@ -68,6 +68,7 @@ class CategoryDetailViewController: QuoteListViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.accessibilityIdentifier = "Odeon.CategoryDetailView"
         view.backgroundColor = .white
         view.addSubview(headerView)
         view.addSubview(collectionView)
