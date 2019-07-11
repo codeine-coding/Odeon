@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Odeon
 
 class OdeonTests: XCTestCase {
 
@@ -17,17 +18,30 @@ class OdeonTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testOdeonServerConnection() {
+        // Given
+        let url = Environment.quotesURL
+        let session = URLSession(configuration: .default)
+        let promise = expectation(description: "Response: 200")
+        
+        let task = session.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                XCTAssert(false, "There was an error: \(error!.localizedDescription)")
+                return
+            }
+            
+            if let status = (response as? HTTPURLResponse)?.statusCode {
+                if status == 200 {
+                    promise.fulfill()
+                } else {
+                    XCTAssert(false, "The Returned code was: \(status)")
+                }
+            }
         }
+        task.resume()
+        
+        waitForExpectations(timeout: 10, handler: nil)
     }
 
 }
