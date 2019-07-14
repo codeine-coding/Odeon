@@ -66,6 +66,7 @@ class CategoriesViewController: UIViewController {
         let sc = UISearchController(searchResultsController: nil)
         sc.obscuresBackgroundDuringPresentation = false
         sc.searchBar.placeholder = "Search Categories"
+        sc.searchBar.accessibilityLabel = "Search"
         sc.searchResultsUpdater = self
         sc.searchBar.sizeToFit()
         return sc
@@ -89,6 +90,7 @@ class CategoriesViewController: UIViewController {
         navigationItem.title = "Categories"
         definesPresentationContext = true
         navigationItem.searchController = searchController
+        navigationController?.navigationBar.accessibilityIdentifier = "Odeon.Categories"
         
         view.backgroundColor = .white
         view.addSubview(collectionView)
@@ -213,6 +215,8 @@ extension CategoriesViewController: UICollectionViewDelegate, UICollectionViewDa
             category = categories[indexPath.row]
         }
         cell.category = category
+        cell.accessibilityIdentifier = category.name
+        cell.accessibilityLabel = "Cell\(indexPath.row)"
         return cell
     }
     
