@@ -44,6 +44,17 @@ class DiscoverViewController: QuoteListViewController, NoDataViewDisplayer {
         return collectionView
     }()
     
+    lazy var bannerView: GADBannerView = {
+        let view = GADBannerView(adSize: kGADAdSizeLargeBanner)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.adUnitID = Environment.categoryBannerAd
+        view.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [ "d61a2f834f47d41f5beceaa02715e221" ]
+        view.load(request)
+        return view
+    }()
+    
     lazy var searchController: UISearchController = {
         let sc = UISearchController(searchResultsController: nil)
         sc.obscuresBackgroundDuringPresentation = false
@@ -83,6 +94,7 @@ class DiscoverViewController: QuoteListViewController, NoDataViewDisplayer {
         view.backgroundColor = .white
         view.addSubview(resultsCountLabel)
         view.addSubview(collectionView)
+        view.addSubview(bannerView)
         super.setupView()
     }
     
@@ -96,6 +108,9 @@ class DiscoverViewController: QuoteListViewController, NoDataViewDisplayer {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
 

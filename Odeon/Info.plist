@@ -10,6 +10,10 @@
 	<string>$(CATEGORY_BANNER_AD_UNIT_ID)</string>
 	<key>BOOKMARK_BANNER_AD_UNIT_ID</key>
 	<string>$(BOOKMARK_BANNER_AD_UNIT_ID)</string>
+	<key>DISCOVER_BANNER_AD_UNIT_ID</key>
+	<string>$(DISCOVER_BANNER_AD_UNIT_ID)</string>
+	<key>QUOTELIST_BANNER_AD_UNIT_ID</key>
+	<string>$(QUOTELIST_BANNER_AD_UNIT_ID)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

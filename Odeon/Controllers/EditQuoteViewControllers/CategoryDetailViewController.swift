@@ -36,9 +36,11 @@ class CategoryDetailViewController: QuoteListViewController {
     lazy var bannerView: GADBannerView = {
         let view = GADBannerView(adSize: kGADAdSizeLargeBanner)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.adUnitID = Environment.categoryBannerAd
+        view.adUnitID = Environment.quoteListBannerAd
         view.rootViewController = self
-//        view.load(TestDeviceRequest)
+        let request = GADRequest()
+        request.testDevices = [ "d61a2f834f47d41f5beceaa02715e221" ]
+        view.load(request)
         return view
     }()
 
