@@ -9,7 +9,7 @@
 import UIKit
 //import QuoteInfoKit
 
-protocol QuoteCellDelegate {
+protocol QuoteCellDelegate: class {
     func infoButtonPressed(imdb_id: String)
 }
 
@@ -20,7 +20,7 @@ class QuoteCell: BaseCollectionViewCell {
     //
     
     let quoteView = QuoteView()
-    var delegate: QuoteCellDelegate?
+    weak var delegate: QuoteCellDelegate?
     var bookmarkController: BookmarksViewController?
     
     //
