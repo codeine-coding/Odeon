@@ -13,15 +13,15 @@ protocol QuoteViewDelegate: class {
 }
 
 class QuoteView: UIView {
-
+    
     weak var delegate: QuoteViewDelegate?
     var squareImageConstraints = [NSLayoutConstraint]()
     var portraitImageConstraints = [NSLayoutConstraint]()
     var landscapeImageConstraints = [NSLayoutConstraint]()
-
-        var imageInitialOrigin = CGPoint()
-
-
+    
+    var imageInitialOrigin = CGPoint()
+    
+    
     var quote: Quote? {
         didSet {
             guard let content = quote?.content,
@@ -29,18 +29,18 @@ class QuoteView: UIView {
                 let filmTitle = quote?.film.title,
                 let entertainmentType = quote?.film.type.title
                 else { return }
-
-
+            
+            
             self.quoteContentLabel.text = "\(content)"
             layoutIfNeeded()
             self.quoteContentLabel.updateTextFont()
             self.quoteAuthorLabel.text = "- \(author)"
             self.quoteFilmTitleLabel.text = "\(filmTitle) (\(entertainmentType))"
-
-
+            
+            
         }
     }
-
+    
     let quoteContentLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +61,7 @@ class QuoteView: UIView {
         label.textAlignment = .right
         return label
     }()
-
+    
     let quoteFilmTitleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +72,7 @@ class QuoteView: UIView {
         label.textAlignment = .right
         return label
     }()
-
+    
     var quoteBackgroundImage: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +80,7 @@ class QuoteView: UIView {
         iv.isUserInteractionEnabled = true
         return iv
     }()
-
+    
     let loadingIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -90,16 +90,16 @@ class QuoteView: UIView {
         view.layer.cornerRadius = 25
         return view
     }()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(quoteBackgroundImage)
@@ -110,43 +110,43 @@ class QuoteView: UIView {
         imageInitialOrigin = quoteBackgroundImage.frame.origin
         displayConstraints()
     }
-
+    
     func displayConstraints() {
         NSLayoutConstraint.activate([
             quoteFilmTitleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             quoteFilmTitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             quoteFilmTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-
+            
             quoteAuthorLabel.bottomAnchor.constraint(equalTo: quoteFilmTitleLabel.topAnchor, constant: -8),
             quoteAuthorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
             quoteAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
-
+            
             quoteContentLabel.topAnchor.constraint(equalTo: topAnchor, constant: 52),
             quoteContentLabel.bottomAnchor.constraint(equalTo: quoteAuthorLabel.topAnchor, constant: -16),
             quoteContentLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             quoteContentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             quoteContentLabel.heightAnchor.constraint(equalTo: quoteContentLabel.widthAnchor, multiplier: 0.74344023),
-
+            
             loadingIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
             loadingIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
             loadingIndicator.heightAnchor.constraint(equalToConstant: 150),
             loadingIndicator.widthAnchor.constraint(equalToConstant: 150),
-
+            
             ])
     }
-
-        func setupBackgroundImage() {
-            setupBackgroundImageConstraints()
-            setupPanGesture()
-            setupPinchGesture()
-        }
-
+    
+    func setupBackgroundImage() {
+        setupBackgroundImageConstraints()
+        setupPanGesture()
+        setupPinchGesture()
+    }
+    
     func setupBackgroundImageConstraints() {
         guard
             let imageWidth = quoteBackgroundImage.image?.size.width,
             let imageHeight = quoteBackgroundImage.image?.size.height
             else { return }
-
+        
         if imageWidth > imageHeight {
             let ratio = imageWidth / imageHeight
             landscapeImageConstraints = [
@@ -205,21 +205,21 @@ class QuoteView: UIView {
             NSLayoutConstraint.activate(squareImageConstraints)
         }
     }
-
+    
     func setupPanGesture() {
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panImageView(_:)))
         quoteBackgroundImage.addGestureRecognizer(panGesture)
     }
-
+    
     func setupPinchGesture() {
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchImageView(_:)))
         quoteBackgroundImage.addGestureRecognizer(pinchGesture)
     }
-
+    
     // MARK - Button Actions
     @objc func panImageView(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let panView = gestureRecognizer.view else { return }
-
+        
         let translation = gestureRecognizer.translation(in: panView.superview)
         switch gestureRecognizer.state {
         case .began, .changed:
@@ -233,12 +233,12 @@ class QuoteView: UIView {
         default:
             panView.frame.origin = imageInitialOrigin
         }
-
+        
     }
-
+    
     @objc func pinchImageView(_ gesturRecoginzer: UIPinchGestureRecognizer) {
         guard let pinchView = gesturRecoginzer.view else { return }
-
+        
         switch gesturRecoginzer.state {
         case .began, .changed:
             pinchView.transform = pinchView.transform.scaledBy(x: gesturRecoginzer.scale, y: gesturRecoginzer.scale)
@@ -249,22 +249,22 @@ class QuoteView: UIView {
         default:
             break
         }
-
+        
     }
-
+    
     func correctOffset(for panView: UIView, in superView: UIView, duration: TimeInterval) {
         checkAllEdgesWithinFrame(of: panView, in: superView, duration: duration)
         checkOriginPointsOffset(of: panView, in: superView, duration: duration)
         checkOriginMaxPointsOffset(of: panView, in: superView, duration: duration)
     }
-
+    
     func checkOriginPointsOffset(of panView: UIView, in superView: UIView, duration: TimeInterval) {
         let superViewframe = superView.safeAreaLayoutGuide.layoutFrame
         if panView.frame.origin.x > superViewframe.origin.x && panView.frame.origin.y > superViewframe.origin.y{
             UIView.animate(withDuration: duration) {
                 panView.frame.origin = CGPoint(x: superViewframe.origin.x, y: superViewframe.origin.y)
             }
-
+            
         } else if panView.frame.origin.x > superViewframe.origin.x {
             UIView.animate(withDuration: duration) {
                 panView.frame.origin.x = superViewframe.origin.x
@@ -275,7 +275,7 @@ class QuoteView: UIView {
             }
         }
     }
-
+    
     func checkOriginMaxPointsOffset(of panView: UIView, in superView: UIView, duration: TimeInterval) {
         let panViewWidth = panView.frame.width
         let panViewHeight = panView.frame.height
@@ -296,8 +296,8 @@ class QuoteView: UIView {
             }
         }
     }
-
-
+    
+    
     func checkAllEdgesWithinFrame(of view: UIView, in superView: UIView, duration: TimeInterval) {
         if view.frame < superView.frame {
             UIView.animate(withDuration: duration) {
@@ -305,14 +305,14 @@ class QuoteView: UIView {
             }
         }
     }
-
+    
 }
 
 private extension UIView {
     var isPortrait: Bool {
         return self.frame.width < self.frame.height
     }
-
+    
     var ratio: CGFloat {
         get {
             if self.isPortrait {
