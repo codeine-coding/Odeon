@@ -8,6 +8,8 @@
 	<string>$(CATEGORIES_URL)</string>
 	<key>CATEGORY_BANNER_AD_UNIT_ID</key>
 	<string>$(CATEGORY_BANNER_AD_UNIT_ID)</string>
+	<key>BOOKMARK_BANNER_AD_UNIT_ID</key>
+	<string>$(BOOKMARK_BANNER_AD_UNIT_ID)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -18,8 +20,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(OQ_APP_NAME)</string>
-    <key>CFBundleDisplayName</key>
-    <string>$(OQ_APP_NAME)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(OQ_APP_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

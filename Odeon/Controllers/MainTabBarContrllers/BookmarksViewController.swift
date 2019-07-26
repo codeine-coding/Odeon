@@ -22,6 +22,17 @@ class BookmarksViewController: QuoteListViewController {
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
+    
+    lazy var bannerView: GADBannerView = {
+        let view = GADBannerView(adSize: kGADAdSizeLargeBanner)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.adUnitID = Environment.bookmarkBannerAd
+        view.rootViewController = self
+        let request = GADRequest()
+        request.testDevices = [ "d61a2f834f47d41f5beceaa02715e221" ]
+        view.load(request)
+        return view
+    }()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,6 +49,7 @@ class BookmarksViewController: QuoteListViewController {
         navigationItem.title = "Bookmarks"
         view.backgroundColor = .white
         view.addSubview(collectionView)
+        view.addSubview(bannerView)
         displayConstraints()
     }
 
@@ -47,6 +59,9 @@ class BookmarksViewController: QuoteListViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             ])
     }
 
