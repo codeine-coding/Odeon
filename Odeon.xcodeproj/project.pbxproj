@@ -36,7 +36,6 @@
 		9F01ED932260046D009712DE /* CategoryDetailPopTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED712260046D009712DE /* CategoryDetailPopTransition.swift */; };
 		9F01ED942260046D009712DE /* EditingBarTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED722260046D009712DE /* EditingBarTransition.swift */; };
 		9F01ED952260046D009712DE /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED742260046D009712DE /* Enums.swift */; };
-		9F01ED962260046D009712DE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED752260046D009712DE /* Extensions.swift */; };
 		9F01ED972260046D009712DE /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED762260046D009712DE /* CachedImage.swift */; };
 		9F01ED982260046D009712DE /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F01ED772260046D009712DE /* Errors.swift */; };
 		9F0D8C8E22CC52CE0096F311 /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D8C8D22CC52CE0096F311 /* HomeViewControllerTests.swift */; };
@@ -76,6 +75,10 @@
 		9F67FFFE2260314C00329B03 /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFD2260314C00329B03 /* Bangers-Regular.ttf */; };
 		9F69077E22D5B78A00FCEB3C /* DiscoveryViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69077D22D5B78A00FCEB3C /* DiscoveryViewControllerTest.swift */; };
 		9F6B2DD122EA922B00C0B540 /* NoDataViewDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B2DD022EA922B00C0B540 /* NoDataViewDisplayer.swift */; };
+		9F6B2DD322EA9A2F00C0B540 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B2DD222EA9A2F00C0B540 /* UIView+Extensions.swift */; };
+		9F6B2DD522EA9A4900C0B540 /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B2DD422EA9A4900C0B540 /* UILabel+Extensions.swift */; };
+		9F6B2DD722EA9A6E00C0B540 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B2DD622EA9A6E00C0B540 /* UIColor+Extensions.swift */; };
+		9F6B2DD922EA9A9400C0B540 /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B2DD822EA9A9400C0B540 /* UITextView+Extensions.swift */; };
 		9FA3740B229E7A8900EDED26 /* QuoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3740A229E7A8900EDED26 /* QuoteListViewController.swift */; };
 		9FB8B1D02283532200AD393E /* HasInterstial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8B1CF2283532200AD393E /* HasInterstial.swift */; };
 		9FCA0F792279462F00AC3CBF /* OdeonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA0F782279462F00AC3CBF /* OdeonTests.swift */; };
@@ -135,7 +138,6 @@
 		9F01ED712260046D009712DE /* CategoryDetailPopTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryDetailPopTransition.swift; sourceTree = "<group>"; };
 		9F01ED722260046D009712DE /* EditingBarTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditingBarTransition.swift; sourceTree = "<group>"; };
 		9F01ED742260046D009712DE /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		9F01ED752260046D009712DE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9F01ED762260046D009712DE /* CachedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 		9F01ED772260046D009712DE /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		9F0D8C8D22CC52CE0096F311 /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
@@ -181,6 +183,10 @@
 		9F67FFFF2260315700329B03 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Bold.ttf"; sourceTree = "<group>"; };
 		9F69077D22D5B78A00FCEB3C /* DiscoveryViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewControllerTest.swift; sourceTree = "<group>"; };
 		9F6B2DD022EA922B00C0B540 /* NoDataViewDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataViewDisplayer.swift; sourceTree = "<group>"; };
+		9F6B2DD222EA9A2F00C0B540 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		9F6B2DD422EA9A4900C0B540 /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
+		9F6B2DD622EA9A6E00C0B540 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		9F6B2DD822EA9A9400C0B540 /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		9FA3740A229E7A8900EDED26 /* QuoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListViewController.swift; sourceTree = "<group>"; };
 		9FB8B1CF2283532200AD393E /* HasInterstial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasInterstial.swift; sourceTree = "<group>"; };
 		9FCA0F762279462F00AC3CBF /* OdeonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdeonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,7 +360,6 @@
 			children = (
 				9F6B2DCF22EA91F900C0B540 /* Extensions */,
 				9F01ED742260046D009712DE /* Enums.swift */,
-				9F01ED752260046D009712DE /* Extensions.swift */,
 				9F01ED762260046D009712DE /* CachedImage.swift */,
 				9F01ED772260046D009712DE /* Errors.swift */,
 				9FB8B1CF2283532200AD393E /* HasInterstial.swift */,
@@ -546,6 +551,10 @@
 			isa = PBXGroup;
 			children = (
 				9F6B2DD022EA922B00C0B540 /* NoDataViewDisplayer.swift */,
+				9F6B2DD222EA9A2F00C0B540 /* UIView+Extensions.swift */,
+				9F6B2DD422EA9A4900C0B540 /* UILabel+Extensions.swift */,
+				9F6B2DD622EA9A6E00C0B540 /* UIColor+Extensions.swift */,
+				9F6B2DD822EA9A9400C0B540 /* UITextView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -800,6 +809,7 @@
 				9F01ED852260046D009712DE /* ColorChooserView.swift in Sources */,
 				9F01ED8B2260046D009712DE /* CategoryService.swift in Sources */,
 				9F01ED832260046D009712DE /* QuoteCell.swift in Sources */,
+				9F6B2DD922EA9A9400C0B540 /* UITextView+Extensions.swift in Sources */,
 				9FFE088D2291BC12002FF7CE /* QuoteView.swift in Sources */,
 				9F01ED842260046D009712DE /* SliderLabel.swift in Sources */,
 				9F67FFEB22602EE500329B03 /* EditViewTabBarController.swift in Sources */,
@@ -807,12 +817,15 @@
 				9F01ED862260046D009712DE /* NoDataView.swift in Sources */,
 				9F67FFE922602E8C00329B03 /* QuoteDetailController.swift in Sources */,
 				9F01ED812260046D009712DE /* AlignmentButton.swift in Sources */,
+				9F6B2DD322EA9A2F00C0B540 /* UIView+Extensions.swift in Sources */,
 				9F67FFE522602E5900329B03 /* SettingsViewController.swift in Sources */,
 				9F4442142282830700FC6DA0 /* Environment.swift in Sources */,
 				9F01ED932260046D009712DE /* CategoryDetailPopTransition.swift in Sources */,
 				9F01ED8A2260046D009712DE /* BaseCollectionViewCell.swift in Sources */,
 				9F01ED782260046D009712DE /* BookmarkedQuote.swift in Sources */,
 				9F67FFDF22602E0400329B03 /* CategoriesViewController.swift in Sources */,
+				9F6B2DD722EA9A6E00C0B540 /* UIColor+Extensions.swift in Sources */,
+				9F6B2DD522EA9A4900C0B540 /* UILabel+Extensions.swift in Sources */,
 				9F01ECE0226001E8009712DE /* AppDelegate.swift in Sources */,
 				9F01ED972260046D009712DE /* CachedImage.swift in Sources */,
 				9F6B2DD122EA922B00C0B540 /* NoDataViewDisplayer.swift in Sources */,
@@ -835,7 +848,6 @@
 				9F01ED922260046D009712DE /* CategorySelectionPushTransition.swift in Sources */,
 				9F67FFDD22602DC800329B03 /* MainTabBarController.swift in Sources */,
 				9F67FFE122602E3B00329B03 /* HomeViewController.swift in Sources */,
-				9F01ED962260046D009712DE /* Extensions.swift in Sources */,
 				9F01ED882260046D009712DE /* CategoryHeaderView.swift in Sources */,
 				9F01ED7C2260046D009712DE /* Category.swift in Sources */,
 				9F01ED8D2260046D009712DE /* InstagramManager.swift in Sources */,
