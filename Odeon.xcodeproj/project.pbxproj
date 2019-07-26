@@ -360,7 +360,6 @@
 			children = (
 				9F6B2DCF22EA91F900C0B540 /* Extensions */,
 				9F01ED742260046D009712DE /* Enums.swift */,
-				9F01ED762260046D009712DE /* CachedImage.swift */,
 				9F01ED772260046D009712DE /* Errors.swift */,
 				9FB8B1CF2283532200AD393E /* HasInterstial.swift */,
 			);
@@ -555,6 +554,7 @@
 				9F6B2DD422EA9A4900C0B540 /* UILabel+Extensions.swift */,
 				9F6B2DD622EA9A6E00C0B540 /* UIColor+Extensions.swift */,
 				9F6B2DD822EA9A9400C0B540 /* UITextView+Extensions.swift */,
+				9F01ED762260046D009712DE /* CachedImage.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
