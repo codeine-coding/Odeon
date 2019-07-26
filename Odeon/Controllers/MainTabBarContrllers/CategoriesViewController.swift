@@ -9,7 +9,8 @@
 import UIKit
 import GoogleMobileAds
 
-class CategoriesViewController: UIViewController {
+class CategoriesViewController: UIViewController, NoDataViewDisplayer, LoadingViewRequired {
+    
     let cellID = "CellID"
 
     var categories: [Category] = [] {
@@ -25,13 +26,13 @@ class CategoriesViewController: UIViewController {
     var cellFrame: CGRect!
     var cellPosition: CGPoint!
 
-    private lazy var noDataView: NoDataView = {
+    lazy var noDataView: NoDataView = {
         let view = NoDataView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let loadingIndicator: UIActivityIndicatorView = {
+    var loadingIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.style = .gray
@@ -150,26 +151,6 @@ class CategoriesViewController: UIViewController {
     private func serverError() {
         self.showNoDataView(with: .serverError)
     }
-
-    private func showNoDataView(with state: EmptyState) {
-        noDataView.state = state
-
-        guard noDataView.superview == nil else { return }
-        loadingIndicator.stopAnimating()
-
-        view.addSubview(noDataView)
-
-        NSLayoutConstraint.activate([
-            noDataView.topAnchor.constraint(equalTo: view.topAnchor),
-            noDataView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            noDataView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            noDataView.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
-    }
-
-    private func hidesEmptyView() {
-        noDataView.removeFromSuperview()
-    }
     
     // MARK: - Private instance methods
     
@@ -188,7 +169,7 @@ class CategoriesViewController: UIViewController {
             loadingIndicator.stopAnimating()
             showNoDataView(with: .noResults)
         } else {
-            hidesEmptyView()
+            hideEmptyView()
         }
     }
     

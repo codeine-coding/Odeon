@@ -75,6 +75,7 @@
 		9F67FFFC2260308300329B03 /* Animosa-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFA2260308300329B03 /* Animosa-Light.otf */; };
 		9F67FFFE2260314C00329B03 /* Bangers-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F67FFFD2260314C00329B03 /* Bangers-Regular.ttf */; };
 		9F69077E22D5B78A00FCEB3C /* DiscoveryViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F69077D22D5B78A00FCEB3C /* DiscoveryViewControllerTest.swift */; };
+		9F6B2DD122EA922B00C0B540 /* NoDataViewDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6B2DD022EA922B00C0B540 /* NoDataViewDisplayer.swift */; };
 		9FA3740B229E7A8900EDED26 /* QuoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA3740A229E7A8900EDED26 /* QuoteListViewController.swift */; };
 		9FB8B1D02283532200AD393E /* HasInterstial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB8B1CF2283532200AD393E /* HasInterstial.swift */; };
 		9FCA0F792279462F00AC3CBF /* OdeonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA0F782279462F00AC3CBF /* OdeonTests.swift */; };
@@ -179,6 +180,7 @@
 		9F67FFFD2260314C00329B03 /* Bangers-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Bangers-Regular.ttf"; sourceTree = "<group>"; };
 		9F67FFFF2260315700329B03 /* DancingScript-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DancingScript-Bold.ttf"; sourceTree = "<group>"; };
 		9F69077D22D5B78A00FCEB3C /* DiscoveryViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryViewControllerTest.swift; sourceTree = "<group>"; };
+		9F6B2DD022EA922B00C0B540 /* NoDataViewDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataViewDisplayer.swift; sourceTree = "<group>"; };
 		9FA3740A229E7A8900EDED26 /* QuoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteListViewController.swift; sourceTree = "<group>"; };
 		9FB8B1CF2283532200AD393E /* HasInterstial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasInterstial.swift; sourceTree = "<group>"; };
 		9FCA0F762279462F00AC3CBF /* OdeonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OdeonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -350,6 +352,7 @@
 		9F01ED732260046D009712DE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9F6B2DCF22EA91F900C0B540 /* Extensions */,
 				9F01ED742260046D009712DE /* Enums.swift */,
 				9F01ED752260046D009712DE /* Extensions.swift */,
 				9F01ED762260046D009712DE /* CachedImage.swift */,
@@ -537,6 +540,14 @@
 				9F67FFCD227E9B2800D85A36 /* Info.plist */,
 			);
 			path = OdeonUITests;
+			sourceTree = "<group>";
+		};
+		9F6B2DCF22EA91F900C0B540 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F6B2DD022EA922B00C0B540 /* NoDataViewDisplayer.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		9FA37430229E8A3000EDED26 /* BaseViewControllers */ = {
@@ -804,6 +815,7 @@
 				9F67FFDF22602E0400329B03 /* CategoriesViewController.swift in Sources */,
 				9F01ECE0226001E8009712DE /* AppDelegate.swift in Sources */,
 				9F01ED972260046D009712DE /* CachedImage.swift in Sources */,
+				9F6B2DD122EA922B00C0B540 /* NoDataViewDisplayer.swift in Sources */,
 				9FA3740B229E7A8900EDED26 /* QuoteListViewController.swift in Sources */,
 				9F01ED902260046D009712DE /* OMDBService.swift in Sources */,
 				9F67FFF122602F3400329B03 /* BackgroundColorViewController.swift in Sources */,

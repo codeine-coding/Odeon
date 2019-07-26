@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-class HomeViewController: QuoteListViewController {
+class HomeViewController: QuoteListViewController, NoDataViewDisplayer, LoadingViewRequired {
 
     override var quotes: [Quote] {
         didSet {
@@ -18,13 +18,13 @@ class HomeViewController: QuoteListViewController {
         }
     }
 
-    private lazy var noDataView: NoDataView = {
+    lazy var noDataView: NoDataView = {
         let view = NoDataView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    let loadingIndicator: UIActivityIndicatorView = {
+    var loadingIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.style = .white
@@ -91,22 +91,6 @@ class HomeViewController: QuoteListViewController {
         ])
     }
 
-    private func showNoDataView(with state: EmptyState) {
-        noDataView.state = state
-
-        guard noDataView.superview == nil else { return }
-        loadingIndicator.stopAnimating()
-
-        view.addSubview(noDataView)
-
-        NSLayoutConstraint.activate([
-            noDataView.topAnchor.constraint(equalTo: view.topAnchor),
-            noDataView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            noDataView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            noDataView.rightAnchor.constraint(equalTo: view.rightAnchor)
-            ])
-    }
-
     private func loadQuotes() {
         QuoteService.shared.getQuotesOfTheDay { [weak self] (result) in
             switch result {
@@ -138,10 +122,6 @@ class HomeViewController: QuoteListViewController {
 
     private func serverError() {
         self.showNoDataView(with: .serverError)
-    }
-
-    private func hidesEmptyView() {
-        noDataView.removeFromSuperview()
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
