@@ -8,12 +8,13 @@
 
 import UIKit
 
+// MARK: Quote Delegate
 protocol QuoteViewDelegate: class {
     func setupBackgroundImage()
 }
 
 class QuoteView: UIView {
-    
+    // MARK: - Properties
     weak var delegate: QuoteViewDelegate?
     var squareImageConstraints = [NSLayoutConstraint]()
     var portraitImageConstraints = [NSLayoutConstraint]()
@@ -91,6 +92,7 @@ class QuoteView: UIView {
         return view
     }()
     
+    // MARK: - VC Setup
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -216,7 +218,7 @@ class QuoteView: UIView {
         quoteBackgroundImage.addGestureRecognizer(pinchGesture)
     }
     
-    // MARK - Button Actions
+    // MARK: - Button Actions
     @objc func panImageView(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard let panView = gestureRecognizer.view else { return }
         
@@ -252,6 +254,7 @@ class QuoteView: UIView {
         
     }
     
+    // MARK: Pan & Pinch offset funcs
     func correctOffset(for panView: UIView, in superView: UIView, duration: TimeInterval) {
         checkAllEdgesWithinFrame(of: panView, in: superView, duration: duration)
         checkOriginPointsOffset(of: panView, in: superView, duration: duration)
@@ -308,6 +311,7 @@ class QuoteView: UIView {
     
 }
 
+// MARK: - Extensions
 private extension UIView {
     var isPortrait: Bool {
         return self.frame.width < self.frame.height
