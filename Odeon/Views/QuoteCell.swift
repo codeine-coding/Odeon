@@ -14,18 +14,11 @@ protocol QuoteCellDelegate: class {
 }
 
 class QuoteCell: BaseCollectionViewCell {
-    
-    //
-    // MARK - Properties
-    //
+    // MARK: - Properties
     
     let quoteView = QuoteView()
     weak var delegate: QuoteCellDelegate?
     var bookmarkController: BookmarksViewController?
-    
-    //
-    // MARK - Property Observers
-    //
 
     var isBookmarked: Bool = false {
         didSet {
@@ -36,11 +29,6 @@ class QuoteCell: BaseCollectionViewCell {
             }
         }
     }
-    
-    
-    //
-    // MARK - UI Closures
-    //
     
     lazy var overlayView: UIView = {
         let view = UIView(frame: self.frame)
@@ -70,8 +58,7 @@ class QuoteCell: BaseCollectionViewCell {
         return btn
     }()
     
-    //
-    // MARK - Setup Functions
+    // MARK: - Setup Functions
     
     override func setupView() {
         addSubview(view)
@@ -109,9 +96,7 @@ class QuoteCell: BaseCollectionViewCell {
         layoutIfNeeded()
     }
     
-    //
-    // MARK - Action Functions
-    //
+    // MARK: - Action Functions
     
     @objc func didTapBookmarkButton() {
         guard let quote = quoteView.quote else { return }
