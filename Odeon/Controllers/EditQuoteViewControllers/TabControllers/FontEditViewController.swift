@@ -10,7 +10,7 @@ import UIKit
 
 class FontEditViewController: UIViewController {
     
-    var editQuoteController: EditQuoteViewController?
+    weak var editQuoteController: EditQuoteViewController?
     
     let opacityLabel = SliderLabel("Opacity", frame: .zero)
     
