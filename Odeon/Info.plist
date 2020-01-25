@@ -91,6 +91,8 @@
 	</array>
 	<key>UNSPLASH_ACESS_KEY</key>
 	<string>$(UNSPLASH_ACESS_KEY)</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>light</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>UNSPLASH_SECRET_KEY</key>
